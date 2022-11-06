@@ -63,3 +63,5 @@ Gemfile.lock
 /.sass-cache/
 docs/*
 .DS_Store
+
+node_modules
