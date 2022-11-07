@@ -1,9 +1,9 @@
-import path, { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import svelte from '@astrojs/svelte';
-import tailwind from '@astrojs/tailwind';
-import sitemap from '@astrojs/sitemap';
-import mdx from '@astrojs/mdx';
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
+import svelte from "@astrojs/svelte";
+import tailwind from "@astrojs/tailwind";
+import sitemap from "@astrojs/sitemap";
+import mdx from "@astrojs/mdx";
 import { defineConfig } from "astro/config";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -16,33 +16,37 @@ const __dirname = dirname(__filename); // Full Astro Configuration API Documenta
 // You can disable this by removing "@ts-check" and `@type` comments below.
 // @ts-check
 
-
-
 // https://astro.build/config
 export default defineConfig(
-/** @type {import('astro').AstroUserConfig} */
-{
-  // root: '.',     // Where to resolve all URLs relative to. Useful if you have a monorepo project.
-  // outDir: './dist',       // When running `astro build`, path to final static output
-  // publicDir: './public',   // A folder of static files Astro will copy to the root. Useful for favicons, images, and other files that don’t need processing.
-  site: 'https://astro-ink.vercel.app',
-  // Your public domain, e.g.: https://my-site.dev/. Used to generate sitemaps and canonical URLs.
-  server: {// port: 3000,         // The port to run the dev server on.
-  },
-  integrations: [mdx(), svelte(), tailwind({
-    config: {
-      applyBaseStyles: false
-    }
-  }), sitemap()],
-  vite: {
-    plugins: [],
-    resolve: {
-      alias: {
-        '$': path.resolve(__dirname, './src')
-      }
+  /** @type {import('astro').AstroUserConfig} */
+  {
+    // root: '.',     // Where to resolve all URLs relative to. Useful if you have a monorepo project.
+    // outDir: './dist',       // When running `astro build`, path to final static output
+    // publicDir: './public',   // A folder of static files Astro will copy to the root. Useful for favicons, images, and other files that don’t need processing.
+    // site: "https://astro-ink.vercel.app",
+    integrations: [
+      mdx(),
+      svelte(),
+      tailwind({
+        config: {
+          applyBaseStyles: false,
+        },
+      }),
+      sitemap(),
+    ],
+    vite: {
+      plugins: [],
+      resolve: {
+        alias: {
+          $: path.resolve(__dirname, "./src"),
+        },
+      },
+      // ssr: {
+      //   noExternal: ["three", "troika-three-text"],
+      // },
+      optimizeDeps: {
+        allowNodeBuiltins: true,
+      },
     },
-    optimizeDeps: {
-      allowNodeBuiltins: true
-    }
   }
-});
+);
