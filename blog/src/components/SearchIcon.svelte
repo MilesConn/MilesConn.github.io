@@ -1,5 +1,5 @@
 <script lang="ts">
-    import SvgIcon from './SvgIcon.svelte'
+    import SvgIcon from './SvgIcon/SvgIcon.svelte'
     export let found:boolean = false
 </script>
 <SvgIcon>
