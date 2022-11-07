@@ -1,0 +1,15 @@
+---
+import Cube from "src/components/Cube.svelte";
+import DefaultPageLayout from 'src/layouts/default.astro'
+---
+
+<DefaultPageLayout content={{title: "TITEL", description: "Description"}}>
+    <div>
+    <Cube client:only="svelte" />
+    </div>
+    <div>
+        <p>
+            This is text I'm writing in here
+        </p>
+    </div>
+</DefaultPageLayout>
