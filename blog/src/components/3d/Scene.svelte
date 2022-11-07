@@ -1,6 +1,5 @@
 <script>
   import {
-    Mesh,
     Canvas,
     OrbitControls,
     PerspectiveCamera,
@@ -8,7 +7,7 @@
     AmbientLight,
   } from "@threlte/core";
   import { DEG2RAD } from "three/src/math/MathUtils";
-  import { BoxGeometry, MeshBasicMaterial } from "three";
+  import Cube from "./Cube.svelte";
 </script>
 
 <div>
@@ -25,11 +24,7 @@
     <DirectionalLight shadow position={{ x: 3, y: 10, z: 10 }} />
     <DirectionalLight position={{ x: -3, y: 10, z: -10 }} intensity={0.2} />
     <AmbientLight intensity={0.2} />
-
-    <Mesh
-      geometry={new BoxGeometry(1, 1, 1)}
-      material={new MeshBasicMaterial()}
-    />
+    <Cube />
   </Canvas>
 </div>
 
