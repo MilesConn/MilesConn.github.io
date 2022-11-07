@@ -1,7 +1,7 @@
 ---
 import DefaultPageLayout from '$/layouts/default.astro'
 import PostPreviewList from 'src/components/PostPreviewList.astro'
-import Cube from 'src/components/Cube.svelte'
+import Scene from 'src/components/3d/Scene.svelte'
 
 
 const title = 'Home'
@@ -14,7 +14,7 @@ const posts = await Astro.glob('./blog/*.md')
     <div class="page__actions">
         <a class="action__go-to-blog" href="/blog" title="All Posts">All Posts &rarr;</a>
     </div>
-    <Cube client:only="svelte" />
+    <Scene client:only="svelte" />
 </DefaultPageLayout>
 
 <style>
