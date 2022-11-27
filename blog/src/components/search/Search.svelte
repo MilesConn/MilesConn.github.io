@@ -36,8 +36,11 @@
     })
 
     $: {
-        if(searchQuery && searchQuery.length >= 3) {
-           const matches = searchIndex.search(searchQuery)
+        if(searchIndex){
+           const fuzziness = "~2";
+           const defaultSearch = "*"
+           const constructedSearch = (searchQuery ? searchQuery : defaultSearch) + fuzziness
+           const matches = searchIndex.search(constructedSearch)
            searchResults = []
            matches.map(match => {
                searchableDocs.filter(doc => {
