@@ -1,26 +1,24 @@
 ---
 import DefaultPageLayout from '$/layouts/default.astro'
-import PostPreviewList from 'src/components/PostPreviewList.astro'
-import Scene from 'src/components/3d/Scene.svelte'
+import { SITE } from 'src/config'
+import Prose from 'src/components/Prose.astro'
 
 
-const title = 'Home'
-const description = 'Astro-Ink is a crisp, minimal, personal blog theme for Astro'
-
-const posts = await Astro.glob('./blog/*.md')
+const title = 'About'
+const description = 'About me :)'
 ---
-<DefaultPageLayout content={{ title, description }} showPageHeader={false}>
-    <PostPreviewList posts={posts} />
-    <div class="page__actions">
-        <a class="action__go-to-blog" href="/blog" title="All Posts">All Posts &rarr;</a>
-    </div>
+<DefaultPageLayout
+  content={{ title, description }}
+>
+  <Prose>
+    I'm still not sure who I am. Come back later maybe we can find out together!
+
+    <br>
+    <h2>Socials</h2>
+    <a href={ SITE.twitterUrl }>
+        Twitter
+    </a>
+
+  </Prose>
 </DefaultPageLayout>
 
-<style>
-    .page__actions {
-        @apply flex justify-center md:justify-end py-6
-    }
-    .action__go-to-blog {
-        @apply text-base uppercase text-gray-500 dark:text-gray-400 hover:underline
-    }
-</style>

@@ -13,10 +13,6 @@ export const NAV_ITEMS: NavItems = {
     path: "/tags",
     title: "tags",
   },
-  about: {
-    path: "/about",
-    title: "about",
-  },
 };
 
 const siteNames = [
@@ -41,13 +37,16 @@ const descriptions = [
   "Iͪ͢ w͇̓̓o̦ͨn̢̢̿̿d̦ͤͤeͤ͜r᷀͢͢ w̳͛ẖ̌a̹͆t͈͈͒͒ e͇ͨš̞c̗̗̀̀a̛̻p̼̼̓e̘︢︢ ç͆͆h̲̿̿a̟̟͝ṙ̢̢a᷿ͤc̘̄̄t̩͐e̳ͬr̜̜ͭͭs̻ͤͤ a̬᷉r̡̔e̱̱͞͞ a͈᷈l͎᷄᷄l᷊᷊͒o̗ͮͮw̹͂ẻ̉͟͟d᷿ͬ h̼̼͗eͦͦ͜r̠̠͘͘e̝͠",
 ];
 
+// TODO: check env for URL
+// const URL = process.env.
+
 export const SITE = {
-  // Your site's detail?
-  name: "Ink",
+  name: "Miles",
   title: "Astro - Ink",
   description: "Crisp, minimal, personal blog theme for Astro",
-  url: "https://astro-ink.vercel.app",
+  url: "https://milesconn.io",
   githubUrl: "https://github.com/MilesConn",
+  twitterUrl: "https://twitter.com/technoHimbo",
   siteNames,
   descriptions,
 };

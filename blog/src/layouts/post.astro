@@ -10,6 +10,7 @@ const { content } = Astro.props
 <html lang="en">
     <head>
         <BaseHead title={ content.title ? `${ SITE.title } | ${content.title}` : SITE.title } description={ content.description }/>
+        <!-- TODO: add vec shaders here as well -->
     </head>
     <MainLayout>
         <div class="post__header">
