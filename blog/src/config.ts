@@ -47,11 +47,9 @@ export const SITE = {
   title: "Astro - Ink",
   description: "Crisp, minimal, personal blog theme for Astro",
   url: "https://astro-ink.vercel.app",
-  githubUrl: "https://github.com/one-aalam/astro-ink",
-  listDrafts: true,
+  githubUrl: "https://github.com/MilesConn",
   siteNames,
   descriptions,
-  // description ?
 };
 
 export const PAGE_SIZE = 8;
