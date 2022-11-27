@@ -25,6 +25,8 @@ const siteNames = [
   "Teenage Caveman",
   "underdefined?",
   ":O",
+  "email me if you want to see something here",
+  "YOUR AD HERE",
 ];
 const descriptions = [
   "ummmmmmmmmmmm",
@@ -35,6 +37,8 @@ const descriptions = [
   "This website is DEFINITELY written in Rust",
   "This website is DEFINITELY written in COBOL",
   "Welcome to part 88/1204 on my fortran 2 html transpiler",
+  "Sometimes we talk about compilers, sometimes not",
+  "Iͪ͢ w͇̓̓o̦ͨn̢̢̿̿d̦ͤͤeͤ͜r᷀͢͢ w̳͛ẖ̌a̹͆t͈͈͒͒ e͇ͨš̞c̗̗̀̀a̛̻p̼̼̓e̘︢︢ ç͆͆h̲̿̿a̟̟͝ṙ̢̢a᷿ͤc̘̄̄t̩͐e̳ͬr̜̜ͭͭs̻ͤͤ a̬᷉r̡̔e̱̱͞͞ a͈᷈l͎᷄᷄l᷊᷊͒o̗ͮͮw̹͂ẻ̉͟͟d᷿ͬ h̼̼͗eͦͦ͜r̠̠͘͘e̝͠",
 ];
 
 export const SITE = {
