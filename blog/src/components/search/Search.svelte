@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte'
     import SearchIcon from './SearchIcon.svelte'
-    import PostSearchPreview from './PostSearchPreview.svelte'
+    import PostSearchPreview from '../PostSearchPreview.svelte'
 
     let searchInput
     let searchableDocs
