@@ -1,0 +1,30 @@
+---
+export interface Props {
+  items: Array<string>;
+}
+
+const { items } = Astro.props as Props;
+---
+
+<article>
+  <hr class="solid" />
+  <h2>References:</h2>
+  <slot />
+  <ol>
+    {
+      items.map((item) => {
+        return (
+          <li>
+            <a href={item}>{item}</a>
+          </li>
+        );
+      })
+    }
+  </ol>
+</article>
+
+<style>
+  .solid {
+    border-top: 3px solid #bbb;
+  }
+</style>
