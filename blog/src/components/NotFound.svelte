@@ -1,10 +1,9 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import { fade, scale } from "svelte/transition";
-  import { elasticInOut } from "svelte/easing";
+  import { onDestroy, onMount } from "svelte";
+  import { quintInOut } from "svelte/easing";
   //   We should prob add the route for this page
   let ready = false;
-  let timerUp = false;
+  const animationDelayMs = 2000;
   onMount(() => (ready = true));
   const customTransition = () => {
     return {
@@ -14,32 +13,102 @@
         transform: scale(${t});
         `;
       },
-      easing: elasticInOut,
-      duration: 2000,
+      easing: quintInOut,
+      duration: animationDelayMs,
     };
   };
-  //   setInterval(() => (timerUp = true), 2000);
+
+  let url = ``;
+  let clicks = 0;
+  function onClick() {
+    clicks++;
+    bodyColor = randomColor();
+  }
+
+  let textColor = "000000";
+  let bodyColor = "ffffff";
+
+  let styles;
+  $: styles = {
+    "animation-delay": `${animationDelayMs}ms`,
+    "text-color": `#${textColor}`,
+    "body-color": `#${bodyColor}`,
+  };
+
+  let cssVarStyles;
+  $: cssVarStyles = Object.entries(styles)
+    .map(([key, value]) => `--${key}:${value}`)
+    .join(";");
+
+  const randomColor = () => Math.floor(Math.random() * 16777215).toString(16);
+
+  onMount(() => (url = window.location.href));
+  const xPeriod = 13000;
+  const yPeriod = 7000;
+  function setColor() {
+    textColor = randomColor();
+  }
+  let count: any[] = [];
+  setTimeout(() => {
+    count = [setInterval(setColor, xPeriod), setInterval(setColor, yPeriod)];
+  }, animationDelayMs);
+
+  onDestroy(() => count.forEach(clearInterval));
 </script>
 
 <!-- {@debug ready} -->
 
-<div>
-  <!-- TODO: make color change on wall hit -->
-  <div class="x">
-    <div class="y">
-      <h1 class="howdy" in:customTransition>404 PAGE NOT FOUND :></h1>
-    </div>
+<body style={cssVarStyles}>
+  <div class="box">
+    <!-- TODO: make color change on wall hit -->
+    <!-- MAKE ANIMATION START AFTER SVELTE ANIMATION -->
+    {#if ready}
+      <div class="x" in:customTransition>
+        <div class="y">
+          <h1 class="howdy">
+            <!-- TODO add clicked log -->
+            404 PAGE
+            <button class="button" on:click|preventDefault={onClick}
+              >{url}</button
+            > NOT FOUND
+          </h1>
+          <p>
+            you can try clicking the link again it probably won't work the
+            second time
+          </p>
+          <p>Wow you really clicked it {clicks} times. Good for you</p>
+        </div>
+      </div>
+    {/if}
   </div>
-</div>
+</body>
 
 <style>
-    /* GET SIZE OF H1 tag */
+  body {
+    background-color: var(--body-color);
+    min-height: 100vh;
+    margin: 0;
+  }
+  .box {
+    width: 20vw;
+    height: 30vh;
+    color: var(--text-color);
+  }
   .x {
+    /* There's definitely a special relationship here I'm forgetting about their periods*/
     animation: x 13s linear infinite alternate;
+    /* Animating div x ends up adding its own delay */
+    /* animation-delay: var(--animation-delay); */
+  }
+  button {
+    all: unset;
+    cursor: pointer;
+    color: blue;
   }
 
   .y {
     animation: y 7s linear infinite alternate;
+    animation-delay: var(--animation-delay);
   }
 
   @keyframes x {
