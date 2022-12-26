@@ -1,5 +1,19 @@
 const colors = require("tailwindcss/colors");
 
+/*
+Okay so what happens is here we export this file and then we import it 
+into talwind config and we add this ot the default theme
+we can also obviously set a bunch of other things in here
+
+CSS goals are 
+TODO:
+1. Get rid of all custom classes I don't recognize 
+2. Consolidate components
+3. Figure out why css in litemode is not working --> sometimes you need a full restart
+4. get rid of themes we don't use
+5. those class names lowkey might be tailwind config stuff lol
+*/
+
 module.exports = {
   /**
    * Color Palette - Purple Heart

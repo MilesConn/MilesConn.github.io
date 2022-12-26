@@ -3,6 +3,9 @@ const config = require("./tailwind.theme.config");
 /**
  * Find the applicable theme color palette, or use the default one
  */
+
+const themeKey = "ambersky";
+process.env.THEME_KEY = themeKey;
 const themeConfig =
   process.env.THEME_KEY && config[process.env.THEME_KEY]
     ? config[process.env.THEME_KEY]
@@ -21,6 +24,8 @@ module.exports = {
         theme: {
           ...colors,
         },
+        "black-coffee": "#352f33",
+        "dutch-white": "#D5C7AA",
       },
       typography: (theme) => ({
         dark: {
@@ -30,6 +35,7 @@ module.exports = {
         },
         DEFAULT: {
           css: {
+            //  TODO: figure out why I can't set default fonts here for paragraph
             a: {
               color: colors.dark.primary,
               "&:hover": {
