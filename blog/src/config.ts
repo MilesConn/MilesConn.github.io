@@ -21,6 +21,7 @@ const siteNames = [
   "Teenage Caveman",
   "underdefined?",
   ":O",
+  "0:",
   "email me if you want to see something here",
   "YOUR AD HERE",
 ];
