@@ -5,8 +5,8 @@
   const vertex = document.querySelector("#vert").textContent.trim();
   const fragment = document.querySelector("#frag").textContent.trim();
 
-  const color1 = new Color(0xff6c00);
-  const color2 = new Color(0 / 255, 180 / 255, 255 / 255);
+  const color1 = new Color(0x351600);
+  const color2 = new Color(0x102c54);
 
   const ColorShiftMaterial = new ShaderMaterial({
     uniforms: {
