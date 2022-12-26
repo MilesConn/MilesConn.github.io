@@ -2,12 +2,16 @@
   "name": "astro-ink",
   "version": "1.0.1",
   "private": true,
+  "workspaces": [
+    "scripts"
+  ],
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "check": "astro check",
     "postbuild": "node ./scripts/search/prepare-index.js",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "build-search": "yarn workspace scripts build-search"
   },
   "devDependencies": {
     "@astrojs/mdx": "^0.11.1",
@@ -33,7 +37,10 @@
   "dependencies": {
     "@threlte/core": "^4.3.2",
     "@threlte/extras": "^4.5.0",
+    "remark": "^14.0.2",
+    "remark-mdx": "^2.2.1",
     "three": "^0.146.0",
     "threlte": "^3.13.1"
-  }
+  },
+  "packageManager": "yarn@3.3.1"
 }
