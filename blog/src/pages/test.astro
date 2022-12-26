@@ -1,15 +1,13 @@
 ---
 import Scene from "src/components/3d/Scene.svelte";
-import DefaultPageLayout from 'src/layouts/default.astro'
+import DefaultPageLayout from "src/layouts/default.astro";
 ---
 
-<DefaultPageLayout content={{title: "TITEL", description: "Description"}}>
-    <div>
+<DefaultPageLayout content={{ title: "TITEL", description: "Description" }}>
+  <div>
     <Scene client:only="svelte" />
     </div>
     <div>
-        <p>
-            This is text I'm writing in here
-        </p>
-    </div>
+    <p>Welcome to my hidden page.</p>
+  </div>
 </DefaultPageLayout>
