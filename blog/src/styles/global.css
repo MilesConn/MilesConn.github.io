@@ -12,5 +12,9 @@
 		}
 	}
 }
-@tailwind components;
-@tailwind utilities;
+
+@font-face {
+	font-family: "Fraunces";
+	font-display: optional;
+	src: url("../public/fonts/Fraunces[SOFT,WONK,opsz,wght].woff2");
+  }

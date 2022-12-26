@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { objectToCss } from "src/lib/objectToCss";
   import { onDestroy, onMount } from "svelte";
   import { quintInOut } from "svelte/easing";
   //   We should prob add the route for this page
@@ -36,9 +37,7 @@
   };
 
   let cssVarStyles;
-  $: cssVarStyles = Object.entries(styles)
-    .map(([key, value]) => `--${key}:${value}`)
-    .join(";");
+  $: cssVarStyles = objectToCss(styles);
 
   const randomColor = () => Math.floor(Math.random() * 16777215).toString(16);
 
