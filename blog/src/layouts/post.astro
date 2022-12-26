@@ -5,6 +5,7 @@ import BaseHead from "$/components/BaseHead.astro";
 import Prose from "$/components/Prose.astro";
 import { extractLinks } from "src/lib/markdownUtils";
 import Bibliography from "src/components/Bibliography.astro";
+import LoadShaders from "src/components/LoadShaders.astro";
 
 const { content, rawContent } = Astro.props;
 const links = extractLinks(rawContent);
@@ -17,7 +18,7 @@ const links = extractLinks(rawContent);
       title={content.title ? `${SITE.title} | ${content.title}` : SITE.title}
       description={content.description}
     />
-    <!-- TODO: add vec shaders here as well or add it elsewhere-->
+    <LoadShaders />
   </head>
   <MainLayout>
     <div class="post__header">
