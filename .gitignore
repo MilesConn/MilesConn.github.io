@@ -67,3 +67,14 @@ docs/*
 node_modules
 
 .vscode
+
+# This is the generated search index that will be built at compile time
+search-index.json
+
+.pnp.*
+**/.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
