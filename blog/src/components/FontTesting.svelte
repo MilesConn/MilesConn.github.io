@@ -18,8 +18,6 @@
     size: `${size}px`,
   };
 
-  $: console.log("STYLES: ", styles.weight);
-
   $: cssVarStyles = objectToCss(styles);
 </script>
 

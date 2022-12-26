@@ -2,19 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 /* https://github.com/tailwindlabs/tailwindcss/discussions/2917 */
-@layer base {
+/* @layer base {
 	body {
 		&.dark {
-			@apply text-gray-200;
+			 CONSOLIDATE CSS IN ONE PLACE 
+			 @apply text-gray-200; 
             header, footer {
                 @apply text-gray-400 border-gray-700;
             }
 		}
 	}
-}
+} 
+*/
 
 @font-face {
 	font-family: "Fraunces";
 	font-display: optional;
-	src: url("../public/fonts/Fraunces[SOFT,WONK,opsz,wght].woff2");
+	src: url("/fonts/Fraunces[SOFT,WONK,opsz,wght].woff2");
   }
