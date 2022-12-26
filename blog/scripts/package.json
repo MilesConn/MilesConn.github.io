@@ -1,0 +1,9 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "build-search": "node search/prepare-index.js"
+  }
+}
