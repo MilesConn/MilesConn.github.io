@@ -1,13 +1,11 @@
 ---
 import Scene from "src/components/3d/Scene.svelte";
+import FontTesting from "src/components/FontTesting.svelte";
 import DefaultPageLayout from "src/layouts/default.astro";
 ---
 
 <DefaultPageLayout content={{ title: "TITEL", description: "Description" }}>
-  <div>
-    <Scene client:only="svelte" />
-    </div>
-    <div>
-    <p>Welcome to my hidden page.</p>
-  </div>
+  <!-- TODO: I really need to learn the differences of these client loads -->
+  <Scene client:only="svelte" />
+  <FontTesting client:load />
 </DefaultPageLayout>
