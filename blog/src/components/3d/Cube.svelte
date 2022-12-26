@@ -1,9 +1,7 @@
 <script lang="ts">
   import { Mesh, useFrame } from "@threlte/core";
-  import { BoxGeometry, MeshBasicMaterial, Color, ShaderMaterial } from "three";
+  import { BoxGeometry, Color, ShaderMaterial } from "three";
 
-  //   import vertex from "./shaders/shader.vert";
-  //   import fragment from "./shaders/shader.frag";
   const vertex = document.querySelector("#vert").textContent.trim();
   const fragment = document.querySelector("#frag").textContent.trim();
 
