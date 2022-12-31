@@ -57,7 +57,7 @@
 
 <!-- {@debug ready} -->
 
-<body style={cssVarStyles} class="min-h-screen">
+<body style={cssVarStyles}>
   <div class="box">
     <!-- TODO: make color change on wall hit -->
     <!-- MAKE ANIMATION START AFTER SVELTE ANIMATION -->
@@ -86,6 +86,7 @@
   body {
     background-color: var(--body-color);
     margin: 0;
+    @apply min-h-screen;
   }
   .box {
     width: 20vw;
