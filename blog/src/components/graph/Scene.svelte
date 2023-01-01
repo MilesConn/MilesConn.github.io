@@ -107,10 +107,16 @@
 
   pointsGeometry.setAttribute(
     "position",
-    new THREE.BufferAttribute(new Float32Array([0, 0, 0]), 3)
+    new THREE.BufferAttribute(new Float32Array([0, 0.8, 0, 0, 0, 0]), 3)
   );
 
-  const dotMaterial = new THREE.PointsMaterial({ size: 0.1, color: 0xff0000 });
+  const dotMaterial = new THREE.PointsMaterial({
+    size: 0.1,
+    color: 0xff0000,
+    // map: circle_sprite,
+    vertexColors: true,
+    // transparent: true,
+  });
 
   let colors = [];
   //   for (let datum of generated_points) {
@@ -131,9 +137,9 @@
   const pointsMaterial = new THREE.PointsMaterial({
     size: 8,
     sizeAttenuation: false,
-    // vertexColors: THREE.VertexColors,
-    map: circle_sprite,
-    transparent: true,
+    vertexColors: true,
+    // map: circle_sprite,
+    // transparent: true,
   });
 
   const points = new THREE.Points(pointsGeometry, dotMaterial);
@@ -313,7 +319,7 @@
 
 <style>
   div {
-    /* background-color: white; */
+    background-color: white;
     height: 100%;
     width: 100%;
   }
