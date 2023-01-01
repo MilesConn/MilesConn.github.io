@@ -23,13 +23,20 @@
 
 <div style={cssVarStyles}>
   <p class="SOFT">Welcome to my hidden page. WONK</p>
+  <p>
+    The font used here (not this text) is <a
+      href="https://fraunces.undercase.xyz">Fraunces</a
+    > but for some reason my font slider thingy is slighty different then what they're
+    doing
+  </p>
   <p class="WONK">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    Honk for <em>Wonky</em> Fonts
+    <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
     consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. -->
   </p>
   <label>
     <input type="range" min="0" max="100" bind:value={size} />

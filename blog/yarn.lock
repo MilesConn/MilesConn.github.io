@@ -475,6 +475,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@dimforge/rapier3d-compat@npm:^0.10.0":
+  version: 0.10.0
+  resolution: "@dimforge/rapier3d-compat@npm:0.10.0"
+  checksum: cc1d9d5398e7bd1f8974187b476a39d118bfa54b9b29b93278a83c034aae16cfd9cf3e173f6ea20b594024b8d336783633df828619ac231fb554c67f86beef7a
+  languageName: node
+  linkType: hard
+
 "@emmetio/abbreviation@npm:^2.2.3":
   version: 2.2.3
   resolution: "@emmetio/abbreviation@npm:2.2.3"
@@ -782,19 +789,69 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@threlte/core@npm:^4.3.2":
-  version: 4.3.2
-  resolution: "@threlte/core@npm:4.3.2"
-  checksum: d500bc3f62fdde8284a3c0e13a93038d636555dacf612ad160042140d4d4593c56b0ab916f00d0e3197b241c1a3fedff924ad500bf19cd59b4d6d0e19153bc06
+"@theatre/core@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "@theatre/core@npm:0.5.1"
+  dependencies:
+    "@theatre/dataverse": 0.5.1
+  checksum: a891dbc0c3ccbaf374ce62236bee464ee9b9d4a6e76fb6edea2c94f6be473f82a16c23da2e5b0d9d4d2dbd34ca0e3a97cf84c07c944a7b5ce3bbe9354ee2cbeb
   languageName: node
   linkType: hard
 
-"@threlte/extras@npm:^4.5.0":
-  version: 4.5.0
-  resolution: "@threlte/extras@npm:4.5.0"
+"@theatre/dataverse@npm:0.5.1":
+  version: 0.5.1
+  resolution: "@theatre/dataverse@npm:0.5.1"
+  dependencies:
+    lodash-es: ^4.17.21
+  checksum: 45411e0368b0401f33d5ced81da1a75d1e9a6cd1bc8a905ca9beceb38547a2d8a2c1072470c37b9799604ae3948932c1bf9947d6470b9015c944df2dfa949bf0
+  languageName: node
+  linkType: hard
+
+"@theatre/studio@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "@theatre/studio@npm:0.5.1"
+  dependencies:
+    "@theatre/dataverse": 0.5.1
+  peerDependencies:
+    "@theatre/core": "*"
+  checksum: 9c8db3b07f536c51ea14f23a271e0f832d29adb78d03942dfbd8836aacf971750f036980729968e9c2842c2349f6b24f715c4dc1cf2a8aa5fa85baf2b17a8511
+  languageName: node
+  linkType: hard
+
+"@threlte/core@npm:^5.0.8":
+  version: 5.0.8
+  resolution: "@threlte/core@npm:5.0.8"
+  checksum: 2843994af4237bac02eef455b12061d9481194aecc96b2347a7dc2f66b68f9b8685698c2f373843c02af50b6c2da4529ea59fbce33a73a9a3e2009934e5a48e7
+  languageName: node
+  linkType: hard
+
+"@threlte/extras@npm:^4.9.3":
+  version: 4.9.3
+  resolution: "@threlte/extras@npm:4.9.3"
   dependencies:
     troika-three-text: ^0.46.4
-  checksum: b2e6fb64bf959aea8e1bfbb6660aad4432d4a3542c6702e49ca416f493405ca444c838a3aaf007256b45d6b8017d0896c66cc0f096b2ec79d70e81c90ad61e54
+  checksum: e5487a8662a8ae623e06a7bfa9ef5a6fbf64ab020c9fd8bb3aa87c5d30f22c294e837f9b9eaff505d76b5bc44e6a6be93829922143939df48f9d4afdccf09890
+  languageName: node
+  linkType: hard
+
+"@threlte/preprocess@npm:^0.0.2":
+  version: 0.0.2
+  resolution: "@threlte/preprocess@npm:0.0.2"
+  checksum: cb6d1f24f90c479d9ca88fbd6f57f1c782b0941e59f9b82d022a4c845912f94a254ba3b665a97ca10f8cfc36fdda2e3ccd8d8d509ab93dd4b009282de421eec8
+  languageName: node
+  linkType: hard
+
+"@threlte/rapier@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "@threlte/rapier@npm:0.5.0"
+  checksum: e32c43cbe2f684c417b51bbedb5b64922f8a86babefbe40265f9239b5d20963fdf46cd874036c644bd77ef22a3c864d85f23e272aed6dbb8f47c353d42128e07
+  languageName: node
+  linkType: hard
+
+"@threlte/theatre@npm:^0.0.2":
+  version: 0.0.2
+  resolution: "@threlte/theatre@npm:0.0.2"
+  checksum: a9809607c292c4ecdbf7e903cb1aa42fbde37bc51ec3fb3f86cb93a5b54d7db5d563d1f2b9c4e841fa9f03c786d320812c00ab02ed8d1f5ba0446f08d49b1dd9
   languageName: node
   linkType: hard
 
@@ -956,12 +1013,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/three@npm:^0.144.0":
-  version: 0.144.0
-  resolution: "@types/three@npm:0.144.0"
+"@types/three@npm:^0.147.1":
+  version: 0.147.1
+  resolution: "@types/three@npm:0.147.1"
   dependencies:
     "@types/webxr": "*"
-  checksum: 7ce69e1a48ba6d19dc9efb78c5c67a3e66c036f240386dd700eda7a5964e44550066ac45bc0997bd4fe7be446edae356313d992361c18415191468dfdbfb454d
+  checksum: 7ba64eb1cc0922a5edbad21bff71fd7a87a4a67e643edeacc7790097071b2b6b97b34e47137d305e48607d4895cf94eef5d8be366489788dd85fcd4795008cd1
   languageName: node
   linkType: hard
 
@@ -1206,15 +1263,21 @@ __metadata:
     "@astrojs/sitemap": ^1.0.0
     "@astrojs/svelte": ^1.0.2
     "@astrojs/tailwind": ^1.0.0
+    "@dimforge/rapier3d-compat": ^0.10.0
     "@fontsource/fira-sans": ^4.5.9
     "@tailwindcss/aspect-ratio": ^0.4.0
     "@tailwindcss/forms": ^0.5.0
     "@tailwindcss/line-clamp": ^0.4.2
     "@tailwindcss/typography": ^0.5.2
-    "@threlte/core": ^4.3.2
-    "@threlte/extras": ^4.5.0
+    "@theatre/core": ^0.5.1
+    "@theatre/studio": ^0.5.1
+    "@threlte/core": ^5.0.8
+    "@threlte/extras": ^4.9.3
+    "@threlte/preprocess": ^0.0.2
+    "@threlte/rapier": ^0.5.0
+    "@threlte/theatre": ^0.0.2
     "@types/node": ^18.7.14
-    "@types/three": ^0.144.0
+    "@types/three": ^0.147.1
     astro: 1.1.5
     globby: ^13.1.2
     gray-matter: ^4.0.3
@@ -1223,8 +1286,9 @@ __metadata:
     remark: ^14.0.2
     remark-mdx: ^2.2.1
     svelte: ^3.46.4
+    svelte-sequential-preprocessor: ^0.0.7
     tailwindcss: ^3.0.24
-    three: ^0.146.0
+    three: ^0.148.0
     threlte: ^3.13.1
     typescript: ^4.3.5
   languageName: unknown
@@ -3260,6 +3324,13 @@ __metadata:
   dependencies:
     p-locate: ^5.0.0
   checksum: 72eb661788a0368c099a184c59d2fee760b3831c9c1c33955e8a19ae4a21b4116e53fa736dc086cdeb9fce9f7cc508f2f92d2d3aae516f133e16a2bb59a39f5a
+  languageName: node
+  linkType: hard
+
+"lodash-es@npm:^4.17.21":
+  version: 4.17.21
+  resolution: "lodash-es@npm:4.17.21"
+  checksum: 05cbffad6e2adbb331a4e16fbd826e7faee403a1a04873b82b42c0f22090f280839f85b95393f487c1303c8a3d2a010048bf06151a6cbe03eee4d388fb0a12d2
   languageName: node
   linkType: hard
 
@@ -5917,6 +5988,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"svelte-sequential-preprocessor@npm:^0.0.7":
+  version: 0.0.7
+  resolution: "svelte-sequential-preprocessor@npm:0.0.7"
+  dependencies:
+    svelte: ^3.42.6
+    tslib: ~2.3.1
+  checksum: abdd6b2ebf1be16dd527c359af78c567ecb007b8825c16621a91346d830f4dd20f2d78293e5db4d06904a41b252f570c6903099d5ee927fdfb008e5bd2ba64c6
+  languageName: node
+  linkType: hard
+
 "svelte2tsx@npm:^0.5.11":
   version: 0.5.16
   resolution: "svelte2tsx@npm:0.5.16"
@@ -5927,6 +6008,13 @@ __metadata:
     svelte: ^3.24
     typescript: ^4.1.2
   checksum: 53240e92ca7c3362355f098aff425969e8945420bb61fb342e8305958cbc4a824e62675f2cbc2a20c1597b7a073f474399b9e2e4685214ed6d2a0fee44f9fd96
+  languageName: node
+  linkType: hard
+
+"svelte@npm:^3.42.6":
+  version: 3.55.0
+  resolution: "svelte@npm:3.55.0"
+  checksum: 0b182973a4152fec8baa59cc168ca4528d63faba130bc83063a7d55d1732a81303b48745f4bffe53436b875b9c98960b0265d45473e5b3d25c77b116fdc274f0
   languageName: node
   linkType: hard
 
@@ -5996,10 +6084,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"three@npm:^0.146.0":
-  version: 0.146.0
-  resolution: "three@npm:0.146.0"
-  checksum: c6eb2005d97c599de7f4eccf73c4b1e8731c353ca3e7b9bf9d3bc2b52a8e288c59c06c148fd93df16df323b28938947227a37e07cc6fbe04aa8f8725e49caa8a
+"three@npm:^0.148.0":
+  version: 0.148.0
+  resolution: "three@npm:0.148.0"
+  checksum: 3f6359585c006c6f78b2fc1adeb90559d9b7cd6daf5cf916e81494ff228f4a9beffe37136bd8d5b0afbf377ac070b70624245bec2e9ee557035e2c485ce05197
   languageName: node
   linkType: hard
 
@@ -6114,6 +6202,13 @@ __metadata:
   version: 2.4.0
   resolution: "tslib@npm:2.4.0"
   checksum: 8c4aa6a3c5a754bf76aefc38026134180c053b7bd2f81338cb5e5ebf96fefa0f417bff221592bf801077f5bf990562f6264fecbc42cd3309b33872cb6fc3b113
+  languageName: node
+  linkType: hard
+
+"tslib@npm:~2.3.1":
+  version: 2.3.1
+  resolution: "tslib@npm:2.3.1"
+  checksum: de17a98d4614481f7fcb5cd53ffc1aaf8654313be0291e1bfaee4b4bb31a20494b7d218ff2e15017883e8ea9626599b3b0e0229c18383ba9dce89da2adf15cb9
   languageName: node
   linkType: hard
 
