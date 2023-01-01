@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import {
     Canvas,
     OrbitControls,
@@ -6,9 +6,13 @@
     DirectionalLight,
     AmbientLight,
     MeshInstance,
+    ThreltePointerEvent,
     Object3DInstance,
+    Three,
+    useFrame,
   } from "@threlte/core";
-  import { Points } from "three";
+  import { Camera, Points } from "three";
+  import { useCursor } from "@threlte/extras";
   import * as THREE from "three";
   import { DEG2RAD } from "three/src/math/MathUtils";
   import Cube from "../3d/Cube.svelte";
@@ -92,22 +96,24 @@
     return [pt_x, pt_y];
   }
 
-  const data_points = [];
-  for (let i = 0; i < point_num; i++) {
-    let position = randomPosition(radius);
-    let name = "Point " + i;
-    let group = Math.floor(Math.random() * 6);
-    let point = { position, name, group };
-    data_points.push(point);
+  let data_points = [];
+  for (let i = 0; i < 88; i++) {
+    // let position = randomPosition(radius);
+    // let name = "Point " + i;
+    // let group = Math.floor(Math.random() * 6);
+    // let point = { position, name, group };
+    const points = [Math.random(), Math.random(), 3];
+    data_points = data_points.concat(points);
   }
 
   const generated_points = data_points;
+  console.log("GENERATED POINTS:", data_points);
 
   const pointsGeometry = new THREE.BufferGeometry();
 
   pointsGeometry.setAttribute(
     "position",
-    new THREE.BufferAttribute(new Float32Array([0, 0.8, 0, 0, 0, 0]), 3)
+    new THREE.BufferAttribute(new Float32Array(generated_points), 3)
   );
 
   const dotMaterial = new THREE.PointsMaterial({
@@ -188,7 +194,7 @@
 
   // Hover and tooltip interaction
 
-  //   raycaster = new THREE.Raycaster();
+  //   const raycaster = new THREE.Raycaster();
   //   raycaster.params.Points.threshold = 10;
 
   //   view.on("mousemove", () => {
@@ -297,29 +303,26 @@
   //   function hideTooltip() {
   //     tooltip_state.display = "none";
   //     updateTooltip();
-  //   }
+  const lookAtVector = new THREE.Vector3(0, 0.5, 0);
+  const camera = new THREE.PerspectiveCamera(50);
+  lookAtVector.applyQuaternion(camera.quaternion);
+
+  function onClick(e: CustomEvent<ThreltePointerEvent>) {
+    console.log("Clicked: ", e);
+  }
 </script>
 
 <div>
   <Canvas>
-    <!-- Aspect on perspecitve camera? -->
-    <PerspectiveCamera fov={84}>
-      <OrbitControls
-        maxPolarAngle={DEG2RAD * 80}
-        autoRotate={false}
-        enableZoom={false}
-        target={{ y: 0.5 }}
-      />
-    </PerspectiveCamera>
-    <Object3DInstance object={points} />
-    <!-- <Points /> -->
-    <!-- <Cube /> -->
+    <Three type={camera} />
+    <Three type={Points} args={[pointsGeometry, dotMaterial]} />
   </Canvas>
 </div>
 
 <style>
   div {
     background-color: white;
+    position: absolute;
     height: 100%;
     width: 100%;
   }
