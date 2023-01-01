@@ -1,0 +1,9 @@
+---
+import DefaultPageLayout from "src/layouts/default.astro";
+import Scene from "src/components/graph/Scene.svelte";
+---
+
+<DefaultPageLayout content={{ title: "Graph", description: "graph test" }}>
+  <!-- TODO: I really need to learn the differences of these client loads -->
+  <Scene client:only="svelte" />
+</DefaultPageLayout>

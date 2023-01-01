@@ -41,9 +41,9 @@ export default defineConfig(
           $: path.resolve(__dirname, "./src"),
         },
       },
-      // ssr: {
-      //   noExternal: ["three", "troika-three-text"],
-      // },
+      ssr: {
+        noExternal: ["three", "troika-three-text"],
+      },
       optimizeDeps: {
         allowNodeBuiltins: true,
       },
