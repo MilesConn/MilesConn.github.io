@@ -18,8 +18,6 @@
   });
 
   let rotation = 0;
-  let lerp = 0;
-  let towardsPositive = true;
   const orError = (msg: string) => {
     throw new Error(msg);
   };

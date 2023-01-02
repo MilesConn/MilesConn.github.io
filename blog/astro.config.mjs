@@ -4,6 +4,7 @@ import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
+import { preprocessThrelte } from "@threlte/preprocess";
 import { defineConfig } from "astro/config";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -26,6 +27,9 @@ export default defineConfig(
     // site: "https://astro-ink.vercel.app",
     integrations: [
       mdx(),
+      // Adding the preprocessor here does something weird
+      // and breaks typescript support
+      // svelte({ preprocess: [preprocessThrelte()] }),
       svelte(),
       tailwind({
         config: {

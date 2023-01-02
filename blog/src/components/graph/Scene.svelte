@@ -10,12 +10,14 @@
     Object3DInstance,
     Three,
     useFrame,
+    T,
   } from "@threlte/core";
   import { Camera, Points } from "three";
   import { useCursor } from "@threlte/extras";
   import * as THREE from "three";
   import { DEG2RAD } from "three/src/math/MathUtils";
   import Cube from "../3d/Cube.svelte";
+  import Graph from "./Graph.svelte";
 
   // This is a companion pen to go along with https://beta.observablehq.com/@grantcuster/using-three-js-for-2d-data-visualization. It shows a three.js pan and zoom example using d3-zoom working on 100,000 points. The code isn't very organized here so I recommend you check out the notebook to read about what is going on.
 
@@ -77,15 +79,6 @@
   //     camera.position.set(0, 0, far);
   //   }
   //   setUpZoom();
-
-  const circle_sprite = new THREE.TextureLoader().load(
-    // "public/circle-sprite.png"
-    "https://fastforwardlabs.github.io/visualization_assets/circle-sprite.png"
-  );
-
-  console.log("Circle sprite: ", circle_sprite);
-
-  let radius = 2000;
 
   // Random point in circle code from https://stackoverflow.com/questions/32642399/simplest-way-to-plot-points-randomly-inside-a-circle
   function randomPosition(radius) {
@@ -197,6 +190,12 @@
   //   const raycaster = new THREE.Raycaster();
   //   raycaster.params.Points.threshold = 10;
 
+  const pointer = new THREE.Vector2();
+  function onPointerMove(event) {
+    pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+    pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+  }
+
   //   view.on("mousemove", () => {
   //     let [mouseX, mouseY] = d3.mouse(view.node());
   //     let mouse_position = [mouseX, mouseY];
@@ -305,6 +304,10 @@
   //     updateTooltip();
   const lookAtVector = new THREE.Vector3(0, 0.5, 0);
   const camera = new THREE.PerspectiveCamera(50);
+  // The camera position affects the ray cast behaviour which makes sense....
+  //TODO:
+  // get mouse coords correct
+  camera.position.set(0, 0, far);
   lookAtVector.applyQuaternion(camera.quaternion);
 
   function onClick(e: CustomEvent<ThreltePointerEvent>) {
@@ -315,7 +318,7 @@
 <div>
   <Canvas>
     <Three type={camera} />
-    <Three type={Points} args={[pointsGeometry, dotMaterial]} />
+    <Graph camera2={camera} />
   </Canvas>
 </div>
 
