@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "^0.10.0",
+    "@seregpie/three.text-sprite": "^3.2.0",
     "@theatre/core": "^0.5.1",
     "@theatre/studio": "^0.5.1",
     "@threlte/core": "^5.0.8",

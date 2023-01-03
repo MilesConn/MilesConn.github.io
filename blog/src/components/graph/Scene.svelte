@@ -12,6 +12,8 @@
     useFrame,
     T,
   } from "@threlte/core";
+  import { Camera, Points } from "three";
+  import { useCursor } from "@threlte/extras";
   import * as THREE from "three";
   import Graph from "./Graph.svelte";
 
@@ -38,10 +40,6 @@
   // get mouse coords correct
   camera.position.set(0, 0, far);
   lookAtVector.applyQuaternion(camera.quaternion);
-
-  function onClick(e: CustomEvent<ThreltePointerEvent>) {
-    console.log("Clicked: ", e);
-  }
 </script>
 
 <div>

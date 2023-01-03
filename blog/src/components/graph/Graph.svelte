@@ -12,7 +12,9 @@
     useFrame,
     T,
   } from "@threlte/core";
+  import TextSprite from "@seregpie/three.text-sprite";
   import * as THREE from "three";
+  import { Vec2, Vector3 } from "three";
 
   // This is a companion pen to go along with https://beta.observablehq.com/@grantcuster/using-three-js-for-2d-data-visualization. It shows a three.js pan and zoom example using d3-zoom working on 100,000 points. The code isn't very organized here so I recommend you check out the notebook to read about what is going on.
 
@@ -20,7 +22,7 @@
   // not the one I need idk but apparently get(camera) --> camera?
   export let camera2: THREE.PerspectiveCamera;
 
-  const point_num = 1;
+  const point_num = 100;
 
   const width = window.innerWidth;
   const viz_width = width;
@@ -32,15 +34,21 @@
     "public/circle-sprite.png"
   );
 
+  const thielFunction = () => Math.random() * 2 - 1;
+
   let data_points: [number, number, number][] = [];
   for (let i = 0; i < point_num; i++) {
-    // const points: [number, number, number] = [Math.random(), Math.random(), 3];
-    const points: [number, number, number] = [0, 0, 3];
+    const points: [number, number, number] = [
+      thielFunction(),
+      thielFunction(),
+      3,
+    ];
+    // const points: [number, number, number] = [0, 0, 3];
     data_points.push(points);
   }
 
   const generated_points = data_points;
-  console.log("GENERATED POINTS:", data_points);
+  console.log("GENERATED POINTS Length:", data_points.length);
 
   const pointsGeometry = new THREE.BufferGeometry();
 
@@ -89,17 +97,35 @@
 
   const pointer = new THREE.Vector2();
 
+  const text = new TextSprite({
+    text: "Starting text",
+    fontSize: 1,
+    color: "black",
+  });
+
+  text.position.set(0, 0, 0);
+
   function onPointerMove(event) {
     // This actually should probably not be window height / width
     // but definitely 100000% should be canvas height / width
     pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
     pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    updateText(pointer);
+  }
+
+  function updateText(newPos: Vec2) {
+    const worldV = new Vector3(newPos.x, newPos.y, 0);
+    const tv = text.worldToLocal(worldV);
+    // text.position.set(worldV.x, worldV.y, 0);
+
+    // text.position.set(newPos.x, newPos.y, 0);
+    text.text = JSON.stringify({ x: newPos.x, y: newPos.y });
   }
 
   let x: any | undefined;
 
   useFrame(({ camera }) => {
-    // console.log(pointer);
+    // console.log(JSON.stringify({ x: pointer.x, y: pointer.y }));
     // get(camera) // came
     // get(camera);
     // camera.set
@@ -108,12 +134,13 @@
     raycaster.setFromCamera(pointer, camera2);
     const intersections = raycaster.intersectObject(points);
     const intersection = intersections.length > 0 ? intersections[0] : null;
-    console.log("Intersections L: ", intersections.length);
 
     if (intersection) {
       let sorted_intersects = sortIntersectsByDistanceToRay(intersections);
       let intersect = sorted_intersects[0];
       let index = intersect.index;
+
+      // points.getObjectById(intersection.instanceId)
       let datum = generated_points[index];
       highlightPoint(datum);
     } else {
@@ -162,6 +189,7 @@
 
 <svelte:window on:mousemove={onPointerMove} />
 <Three type={points} />
+<Three type={text} />
 <!-- <Three type={Points}>
   <Three type={pointsGeometry} />
   <Three type={BufferGeometry}
