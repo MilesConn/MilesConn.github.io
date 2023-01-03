@@ -725,6 +725,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@seregpie/three.text-sprite@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "@seregpie/three.text-sprite@npm:3.2.0"
+  dependencies:
+    "@seregpie/three.text-texture": ^3.2.0
+  peerDependencies:
+    three: ">=0.113"
+  checksum: c11c205c6f8a7d863277c7f89cf3a5f7a0aac8fe7da0231a638b0e7c0253765231fdf593abdc61965167ad9b78e7043cdc6a48de08e7e13787298e7c9e89dd8c
+  languageName: node
+  linkType: hard
+
+"@seregpie/three.text-texture@npm:^3.2.0":
+  version: 3.2.1
+  resolution: "@seregpie/three.text-texture@npm:3.2.1"
+  peerDependencies:
+    three: ">=0.113"
+  checksum: 3b602820e5fab6b0c34998143dd1cb5e5d74b598bda7de6654c5e51964b1b0cc2fea4676ba29c80074c537bfcfa73c58deddd3a476616370806cad27a42b6d52
+  languageName: node
+  linkType: hard
+
 "@sveltejs/vite-plugin-svelte@npm:^1.0.1":
   version: 1.0.4
   resolution: "@sveltejs/vite-plugin-svelte@npm:1.0.4"
@@ -1265,6 +1285,7 @@ __metadata:
     "@astrojs/tailwind": ^1.0.0
     "@dimforge/rapier3d-compat": ^0.10.0
     "@fontsource/fira-sans": ^4.5.9
+    "@seregpie/three.text-sprite": ^3.2.0
     "@tailwindcss/aspect-ratio": ^0.4.0
     "@tailwindcss/forms": ^0.5.0
     "@tailwindcss/line-clamp": ^0.4.2
