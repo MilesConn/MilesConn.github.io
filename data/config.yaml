@@ -12,7 +12,7 @@ enableContextualBacklinks: true
 enableRecentNotes: false
 enableGitHubEdit: true
 enableMermaid: true
-GitHubLink: https://github.com/jackyzha0/quartz/tree/hugo/content
+GitHubLink: https://github.com/MilesConn/MilesConn.github.io/tree/temp-quartz
 favicon:
   - { rel: "shortcut icon", href: "me_v3.png", type: "image/png" }
 search:
