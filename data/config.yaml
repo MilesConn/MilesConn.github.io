@@ -1,4 +1,4 @@
-name: Jacky Zhao
+name: Miles Conn
 enableToc: true
 openToc: false
 enableLinkPreview: true
@@ -13,17 +13,18 @@ enableRecentNotes: false
 enableGitHubEdit: true
 enableMermaid: true
 GitHubLink: https://github.com/jackyzha0/quartz/tree/hugo/content
+favicon:
+  - { rel: "shortcut icon", href: "me_v3.png", type: "image/png" }
 search:
   enableSemanticSearch: false
   operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
   operandIndexId: "REPLACE-WITH-YOUR-OPERAND-INDEX-ID"
-description:
-  Host your second brain and digital garden for free. Quartz features extremely fast full-text search,
-  Wikilink support, backlinks, local graph, tags, and link previews.
-page_title:
-  "🪴 Quartz 3.3"
+description: Miles Conn's personal blog. Welcome :)
+page_title: "Ephemeral Homestead"
 links:
   - link_name: Twitter
-    link: https://twitter.com/_jzhao
+    link: https://twitter.com/home
   - link_name: GitHub
-    link: https://github.com/jackyzha0
+    link: https://github.com/MilesConn
+  - link_name: are.na
+    link: https://www.are.na/miles-conn-aygvy9psasq
