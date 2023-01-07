@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - hugo
+      - temp-quartz
 
 jobs:
   deploy:
@@ -19,8 +19,7 @@ jobs:
           token: ${{ secrets.PERSONAL_REPO_PAT }}
 
       - name: Move private notes
-        run: 
-          ls
+        run: ls
           mv personal/writings/posts content/
           ls content/
 
