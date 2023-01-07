@@ -15,7 +15,7 @@ jobs:
       - name: Fetch private notes
         uses: actions/checkout@v2
         with:
-          repository: https://github.com/MilesConn/personal
+          repository: MilesConn/personal
           token: ${{ secrets.PERSONAL_REPO_PAT }}
 
       - name: Move private notes
