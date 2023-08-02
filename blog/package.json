@@ -25,7 +25,7 @@
     "@tailwindcss/typography": "^0.5.2",
     "@types/node": "^20.3.3",
     "@types/three": "^0.152.1",
-    "astro": "2.7.4",
+    "astro": "^2.7.3",
     "globby": "^13.2.1",
     "gray-matter": "^4.0.3",
     "lunr": "^2.3.9",
@@ -35,6 +35,7 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
+    "@astrojs/image": "^0.17.2",
     "@dimforge/rapier3d-compat": "^0.11.2",
     "@seregpie/three.text-sprite": "^3.2.0",
     "@theatre/core": "^0.6.1",
