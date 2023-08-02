@@ -1,24 +1,19 @@
 ---
-import DefaultPageLayout from '$/layouts/default.astro'
-import { SITE } from 'src/config'
-import Prose from '$/components/Prose.astro'
+import DefaultPageLayout from "$/layouts/default.astro";
+import { SITE } from "src/config";
+import Prose from "$/components/Prose.astro";
+import { AreNa, Folder, MediaImage } from "$/components/Icons";
 
-
-const title = 'About'
-const description = 'About me :)'
+const title = "About";
+const description = "About me :)";
 ---
-<DefaultPageLayout
-  content={{ title, description }}
->
+
+<DefaultPageLayout content={{ title, description }}>
   <Prose>
     I'm still not sure who I am. Come back later maybe we can find out together!
 
-    <br>
+    <br />
     <h2>Socials</h2>
-    <a href={ SITE.twitterUrl }>
-        Twitter
-    </a>
-
+    <a href={SITE.twitterUrl}> Twitter</a>
   </Prose>
 </DefaultPageLayout>
-

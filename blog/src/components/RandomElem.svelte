@@ -1,6 +1,7 @@
 <script lang="ts">
   export let titles: string[];
   export let link: string;
+  // TODO: store the random elem
   let randomElem = titles[Math.floor(Math.random() * titles.length)];
 </script>
 
