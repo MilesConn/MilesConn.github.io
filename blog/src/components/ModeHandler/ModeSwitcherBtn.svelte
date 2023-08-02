@@ -1,6 +1,6 @@
 <script lang="ts">
   import ModeSwitcher from "./ModeSwitcher.svelte";
-  import SvgIcon from "./SvgIcon/SvgIcon.svelte";
+  import SvgIcon from "$/components/SvgIcon/SvgIcon.svelte";
 </script>
 
 <ModeSwitcher let:theme>
