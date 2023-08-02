@@ -36,20 +36,50 @@ async function processImage() {
 	ctx.drawImage(img, 0, 0, img.width, img.height);
     const imgd = ctx.getImageData(0, 0, img.width, img.height);
 
-	const q = new RgbQuant();
-	q.sample(imgd.data, img.width);
-	const pal = q.palette(true);
-	const out = q.reduce(imgd.data);
+	const q = new RgbQuant({
+        // colors: 256,
+        palette: [
+            [0,0,0],
+            [255,255,0],
+            [0,255,255],
+            [255,0,255],
+            [255,255,255],
+        ],
+        reIndex: true,
+    });
+	// q.sample(imgd.data, img.width);
+	// const pal = q.palette(true);
+	// const out = q.reduce(imgd.data, 1, "FloydSteinberg");
+	const out = q.reduce(imgd.data, 1, "FloydSteinberg");
 
 	// You might want to do something with 'out' here, e.g., render it
-	return out;
+	return {out, width: img.width, height: img.height};
 }
 
 // You can call 'processImage' here to have the processed image ready for rendering
-const ditheredImage = await processImage();
-console.log("out: ", ditheredImage);
+const { out, width, height } = await processImage();
+
+const canvas = createCanvas(width, height);
+const ctx = canvas.getContext('2d');
+console.log('out:', out);
+console.log('width:', width);
+console.log('height:', height);
+console.log('ctx:', ctx);
+
+// Create an ImageData object from the Uint8Array
+// const imageData = new ImageData(new Uint8ClampedArray(out), width, height);
+// console.log("Image data: ", imageData);
+const imageData = await ctx.createImageData(width, height);
+imageData.data.set(new Uint8ClampedArray(out));
+ctx.putImageData(imageData, 0, 0);
+
+// Put the ImageData object into the canvas
+// await ctx.putImageData(imageData, 0, 0);
+
+// Convert the canvas to a data URL
+const dataUrl = canvas.toDataURL();
 ---
 
 
 
-<img src={ditheredImage} alt={altText} />
+<img src={dataUrl} alt={altText} />
