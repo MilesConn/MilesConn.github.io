@@ -6,7 +6,7 @@
   let ready = false;
   const animationDelayMs = 2000;
   onMount(() => (ready = true));
-  const customTransition = () => {
+  const customTransition = (_node) => {
     return {
       // T \in [0,1]
       css: (t: number) => {
@@ -62,6 +62,7 @@
     <!-- TODO: make color change on wall hit -->
     <!-- MAKE ANIMATION START AFTER SVELTE ANIMATION -->
     {#if ready}
+      <!-- @ts-ignore -->
       <div class="x" in:customTransition>
         <div class="y">
           <h1 class="howdy">
