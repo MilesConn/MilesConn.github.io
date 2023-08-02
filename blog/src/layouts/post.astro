@@ -4,8 +4,6 @@ import MainLayout from "$/components/MainLayout.astro";
 import BaseHead from "$/components/BaseHead.astro";
 import Prose from "$/components/Prose.astro";
 import { extractLinks } from "src/lib/markdownUtils";
-import Bibliography from "src/components/Bibliography.astro";
-import LoadShaders from "src/components/LoadShaders.astro";
 
 const { content, rawContent } = Astro.props;
 const links = extractLinks(rawContent);
@@ -18,7 +16,6 @@ const links = extractLinks(rawContent);
       title={content.title ? `${SITE.title} | ${content.title}` : SITE.title}
       description={content.description}
     />
-    <LoadShaders />
   </head>
   <MainLayout>
     <div class="post__header">
@@ -55,7 +52,6 @@ const links = extractLinks(rawContent);
     <Prose>
       <slot />
     </Prose>
-    <Bibliography items={links} />
   </MainLayout>
   <style>
     .post__header {

@@ -2,7 +2,6 @@
 import { SITE } from "$/config";
 import BaseHead from "$/components/BaseHead.astro";
 import MainLayout from "$/components/MainLayout.astro";
-import LoadShaders from "src/components/LoadShaders.astro";
 
 const { content, showPageHeader = true } = Astro.props;
 ---
@@ -14,7 +13,6 @@ const { content, showPageHeader = true } = Astro.props;
       title={content.title ? `${SITE.title} | ${content.title}` : SITE.title}
       description={content.description}
     />
-    <LoadShaders />
   </head>
   <MainLayout>
     {
