@@ -1,0 +1,21 @@
+<script>
+  export let size = "50px";
+  export let strokeWidth = "1.1";
+  export let color = "#000000";
+  export let fill = "none";
+</script>
+
+<svg
+  width={size}
+  height={size}
+  stroke-width={strokeWidth}
+  viewBox="0 0 24 24"
+  {fill}
+  xmlns="http://www.w3.org/2000/svg"
+  ><path
+    d="M9 6l6 6-6 6"
+    stroke={color}
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  /></svg
+>
