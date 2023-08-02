@@ -1,24 +1,29 @@
 ---
-import DefaultPageLayout from '$/layouts/default.astro'
-import PostPreviewList from '$/components/PostPreviewList.astro'
-import Paginator from '$/components/Paginator.astro'
-import { PAGE_SIZE } from '$/config'
+import DefaultPageLayout from "$/layouts/default.astro";
+import PostPreviewList from "$/components/PostPreviewList.astro";
+import Paginator from "$/components/Paginator.astro";
+import { PAGE_SIZE } from "$/config";
+import { Frontmatter } from "$/types";
 
-let title = 'Blog'
-let description = 'All the articles posted so far...'
+let title = "Blog";
+let description = "All the articles posted so far...";
 
 export async function getStaticPaths({ paginate }) {
-  const allPosts = await Astro.glob('./*.md');
-  const sortedPosts = allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+  const allPosts = await Astro.glob<Frontmatter>("./*.md");
 
-    return paginate(sortedPosts, {
-      pageSize: PAGE_SIZE
-    })
+  const sortedPosts = allPosts.sort(
+    (a, b) => Date.parse(b.frontmatter.date) - Date.parse(a.frontmatter.date)
+  );
+
+  return paginate(sortedPosts, {
+    pageSize: PAGE_SIZE,
+  });
 }
 
-const { page } = Astro.props
+const { page } = Astro.props;
 ---
+
 <DefaultPageLayout content={{ title, description }}>
-    <PostPreviewList posts={page.data} />
-    <Paginator page={page} />
+  <PostPreviewList posts={page.data} />
+  <Paginator page={page} />
 </DefaultPageLayout>
