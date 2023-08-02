@@ -1,8 +1,10 @@
 ---
 import FontTesting from "../components/pages/FontTesting.svelte";
 import DefaultPageLayout from "$/layouts/default.astro";
+import DitheredImage from "$/components/DitheredImage.astro";
 ---
 
 <DefaultPageLayout content={{ title: "TITEL", description: "Description" }}>
   <FontTesting />
+  <DitheredImage imagePath="src/assets/testImage.jpeg", altText=""/>
 </DefaultPageLayout>

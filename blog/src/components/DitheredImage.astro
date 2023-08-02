@@ -1,6 +1,55 @@
 ---
+import { Image } from 'astro:assets';
+import { readFileSync } from 'fs';
+// @ts-expect-error no types :(
+import RgbQuant from 'rgbquant';
+import { readFile } from 'fs/promises';
+import { createCanvas, loadImage } from 'canvas';
+import t from "../assets/testImage.jpeg";
 
 type Props = {
-    imagePath : string
+    imagePath : string,
+    dither?: boolean,
+    caption?: string,
+    altText: string,
 };
+
+const {imagePath, dither = true, caption, altText} = Astro.props;
+function typeOf(val : any) {
+		return Object.prototype.toString.call(val).slice(8,-1);
+	}
+
+// Function to process the image
+async function processImage() {
+	const data = await readFile(imagePath);
+    console.log("data: ", data);
+	const img = await loadImage(data);
+    console.log("image: ", img);
+
+    console.log("typeof 2 : ", typeOf(img));
+	const can = createCanvas(img.width, img.height);
+    console.log("can: ", can);
+    console.log("typeof 1 : ", typeOf(can));
+	const ctx = can.getContext('2d');
+    console.log("WIDTH : ", img.width);
+    console.log("Height : ", img.height);
+	ctx.drawImage(img, 0, 0, img.width, img.height);
+    const imgd = ctx.getImageData(0, 0, img.width, img.height);
+
+	const q = new RgbQuant();
+	q.sample(imgd.data, img.width);
+	const pal = q.palette(true);
+	const out = q.reduce(imgd.data);
+
+	// You might want to do something with 'out' here, e.g., render it
+	return out;
+}
+
+// You can call 'processImage' here to have the processed image ready for rendering
+const ditheredImage = await processImage();
+console.log("out: ", ditheredImage);
 ---
+
+
+
+<img src={ditheredImage} alt={altText} />
