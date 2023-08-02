@@ -35,7 +35,6 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "@astrojs/image": "^0.17.2",
     "@dimforge/rapier3d-compat": "^0.11.2",
     "@seregpie/three.text-sprite": "^3.2.0",
     "@theatre/core": "^0.6.1",
@@ -45,9 +44,11 @@
     "@threlte/preprocess": "^0.0.2",
     "@threlte/rapier": "^0.5.0",
     "@threlte/theatre": "^0.0.2",
+    "canvas": "^2.11.2",
     "remark": "^14.0.2",
     "remark-mdx": "^2.2.1",
     "rgbquant": "^1.1.2",
+    "sharp": "^0.32.4",
     "svelte-sequential-preprocessor": "^2.0.1",
     "three": "^0.154.0",
     "threlte": "^3.13.1"
