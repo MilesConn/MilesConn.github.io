@@ -1,11 +1,9 @@
 ---
-import { Image } from 'astro:assets';
-import { readFileSync } from 'fs';
 // @ts-expect-error no types :(
 import RgbQuant from 'rgbquant';
 import { readFile } from 'fs/promises';
+import * as nodepath from "path";
 import { createCanvas, loadImage } from 'canvas';
-import t from "../assets/testImage.jpeg";
 
 type Props = {
     imagePath : string,
@@ -36,15 +34,19 @@ async function processImage() {
 	ctx.drawImage(img, 0, 0, img.width, img.height);
     const imgd = ctx.getImageData(0, 0, img.width, img.height);
 
-	const q = new RgbQuant({
-        // colors: 256,
-        palette: [
-            [0,0,0],
+        const CMYK = [[0,0,0],
             [255,255,0],
             [0,255,255],
             [255,0,255],
-            [255,255,255],
-        ],
+            [255,255,255]]
+            const GREEN_MONOCHROME = [
+                [238,255,219],
+                [29,56,1]
+
+            ]
+	const q = new RgbQuant({
+        // colors: 256,
+        palette: GREEN_MONOCHROME, 
         reIndex: true,
     });
 	// q.sample(imgd.data, img.width);
@@ -75,6 +77,9 @@ ctx.putImageData(imageData, 0, 0);
 
 // Put the ImageData object into the canvas
 // await ctx.putImageData(imageData, 0, 0);
+// Todo we should put a contract in place or use an alias but for now we are doing this 
+// this won't work for folders but yolo
+const basename = nodepath.posix.basename(imagePath);
 
 // Convert the canvas to a data URL
 const dataUrl = canvas.toDataURL();
@@ -82,4 +87,6 @@ const dataUrl = canvas.toDataURL();
 
 
 
+<a href=`/file/${basename}`>
 <img src={dataUrl} alt={altText} />
+</a>
