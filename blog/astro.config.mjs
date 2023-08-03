@@ -47,6 +47,8 @@ export default defineConfig(
       resolve: {
         alias: {
           $: path.resolve(__dirname, "./src"),
+          // TODO: we should add this as a tsconfig resolve maybe?
+          assets: path.resolve(__dirname, "./src/assets"),
         },
       },
       ssr: {

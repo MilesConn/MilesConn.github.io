@@ -1,0 +1,41 @@
+---
+import * as nodepath from "path";
+import sharp from 'sharp';
+import { getImage } from "astro:assets";
+
+// const url = Astro.request.url;
+export async function getStaticPaths() {
+    // We are using meta glob because we only want file paths here
+    const allAssets = await import.meta.glob("assets/*");
+    console.log("ALL ASSETS: ", allAssets);
+    await Promise.all(Object.keys(allAssets).map(async (path) => {
+        return await (allAssets[path]()).then((mod) => {
+            console.log("Path: ", path);
+            console.log("mod: ", mod);
+        });
+    }));
+
+    const k  =  Object.keys(allAssets).map((fullPath) => {
+        return {
+            params: {file: nodepath.posix.basename(fullPath)}
+        };
+    });
+    console.log("k", k);
+    return k;
+}
+
+const { file } = Astro.params;
+
+// I think https://docs.astro.build/en/guides/assets/#getimage-astroassets according to this
+// it might be useless af but who knows shrg 
+const image = sharp(`src/assets/${file}`);
+const { width , height} = await image.metadata();
+
+
+const optimizedBackground = await getImage({src: file!, width, height});
+console.log("optimized Background: ", optimizedBackground.src);
+---
+
+<h1>Full-Size Image</h1>
+<img src={`/src/assets/${file}`} alt="Full-Size Dithered Image" />
+<a href="javascript:history.back()">Go back</a>

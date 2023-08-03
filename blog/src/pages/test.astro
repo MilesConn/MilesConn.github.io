@@ -8,3 +8,12 @@ import DitheredImage from "$/components/DitheredImage.astro";
   <FontTesting />
   <DitheredImage imagePath="src/assets/testImage.jpeg", altText=""/>
 </DefaultPageLayout>
+
+<!-- ---
+import { getImage } from "astro:assets";
+import myBackground from "../background.png"
+
+const optimizedBackground = await getImage({src: myBackground, format: 'avif'})
+---
+
+<div style={`background-image: url(${optimizedBackground.src});`}></div> -->
