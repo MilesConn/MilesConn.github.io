@@ -1,0 +1,35 @@
+---
+// TODO: this import doesn't work because tailwind theme config is a cjs file
+// import { barley } from "tailwind.theme.config";
+// TODO: add random colors
+const barley = {
+  colors: {
+    accent: {
+      deepBlack: "#16160E",
+      green1: "#BED2C3",
+      green2: "#47585C",
+      lightPlum: "#4F455C", // in my style sheet this is called dark grey but I won't be using that name
+      eggShell: "#D4DCDA",
+    },
+  },
+};
+const accentColors = barley.colors.accent;
+const randomAccentColor =
+  Object.keys(accentColors)[
+    Math.floor(Object.keys(accentColors).length * Math.random())
+  ];
+
+type Props = {
+  tag: string;
+};
+
+const { tag } = Astro.props;
+---
+
+<a
+  class="inline-block bg-gray-100 p-0.5 my-2 mx-0.5 rounded-md text-blue-600 hover:text-blue-800 underline"
+  href={`/tags/${tag}`}
+  title={tag}
+>
+  #{tag}
+</a>

@@ -2,6 +2,7 @@
 import * as nodepath from "path";
 import sharp from 'sharp';
 import { getImage } from "astro:assets";
+import { image } from "astro:content";
 
 // const url = Astro.request.url;
 export async function getStaticPaths() {
@@ -32,8 +33,8 @@ const image = sharp(`src/assets/${file}`);
 const { width , height} = await image.metadata();
 
 
-const optimizedBackground = await getImage({src: file!, width, height});
-console.log("optimized Background: ", optimizedBackground.src);
+// const optimizedBackground = await getImage({src: image, width, height});
+// console.log("optimized Background: ", optimizedBackground.src);
 ---
 
 <h1>Full-Size Image</h1>

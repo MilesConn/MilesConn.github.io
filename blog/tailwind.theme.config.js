@@ -15,6 +15,18 @@ TODO:
 */
 
 module.exports = {
+  // TODO:
+  barley: {
+    colors: {
+      accent: {
+        deepBlack: "#16160E",
+        green1: "#BED2C3",
+        green2: "#47585C",
+        lightPlum: "#4F455C", // in my style sheet this is called dark grey but I won't be using that name
+        eggShell: "#D4DCDA",
+      },
+    },
+  },
   /**
    * Color Palette - Purple Heart
    */

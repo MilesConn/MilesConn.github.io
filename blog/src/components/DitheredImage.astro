@@ -12,6 +12,11 @@ type Props = {
     altText: string,
 };
 
+// TODO: 
+// we should also allow preprocessing in a prebuild script
+// it'd be nice because then we can store metadata about the files and not have to pass it via 
+// url
+
 const {imagePath, dither = true, caption, altText} = Astro.props;
 function typeOf(val : any) {
 		return Object.prototype.toString.call(val).slice(8,-1);
@@ -46,7 +51,8 @@ async function processImage() {
             ]
 	const q = new RgbQuant({
         // colors: 256,
-        palette: GREEN_MONOCHROME, 
+        // palette: GREEN_MONOCHROME, 
+        palette: CMYK, 
         reIndex: true,
     });
 	// q.sample(imgd.data, img.width);
@@ -87,6 +93,7 @@ const dataUrl = canvas.toDataURL();
 
 
 
-<a href=`/file/${basename}`>
+<a href=`/file/${basename}` class="block text-center">
 <img src={dataUrl} alt={altText} />
+{caption && <span class="block text-center mt-2">{caption}</span>}
 </a>
