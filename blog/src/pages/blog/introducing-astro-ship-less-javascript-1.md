@@ -1,5 +1,5 @@
 ---
-layout: $/layouts/post.astro
+layout: $/layouts/post2.astro
 title: Introducing Astro - Ship Less JavaScript1
 description: There's a simple secret to building a faster website — just ship less.
 tags:
@@ -61,5 +61,7 @@ print('hello world')
 ## Javascript
 
 ```js
-const func = () => {alert("hello")}
+const func = () => {
+  alert("hello");
+};
 ```

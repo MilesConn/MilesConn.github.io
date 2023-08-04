@@ -1,0 +1,59 @@
+---
+import { SITE } from "$/config";
+import MainLayout from "$/components/MainLayout.astro";
+import BaseHead from "$/components/BaseHead.astro";
+import Prose from "$/components/Prose.astro";
+import { extractLinks } from "src/lib/markdownUtils";
+import LineComponent from "$/components/LineComponent.astro";
+import Tag from "$/components/Tag.astro";
+
+const { content, rawContent } = Astro.props;
+const links = extractLinks(rawContent);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={content.title ? `${SITE.title} | ${content.title}` : SITE.title}
+      description={content.description}
+    />
+  </head>
+  <MainLayout>
+    <div class="py-4 mb-1">
+      <h1
+        class="text-5xl font-extrabold text-theme-primary dark:text-theme-dark-primary"
+      >
+        {content.title}
+      </h1>
+      <LineComponent />
+      <div class="inline-flex gap-2">
+        {
+          content.tags.length > 0 &&
+            content.tags.map((tag: string) => <Tag {tag} />)
+        }
+      </div>
+      <h5 class="text-gray-500 dark:text-gray-100">
+        <a
+          class="no-underline dark:text-white hover:text-theme-primary"
+          href={`https://twitter.com/${content.authorTwitter}`}
+          title={`${content.author + "'s"} twitter`}
+          target="_blank"
+          rel="external"
+          >{content.author}
+        </a> |
+        <span class="text-gray-400"
+          >{
+            new Intl.DateTimeFormat("en-US", { dateStyle: "full" }).format(
+              new Date(content.date)
+            )
+          }
+        </span>
+      </h5>
+    </div>
+    <!--<img src={content.image} alt={content.title} />-->
+    <Prose>
+      <slot />
+    </Prose>
+  </MainLayout>
+</html>
