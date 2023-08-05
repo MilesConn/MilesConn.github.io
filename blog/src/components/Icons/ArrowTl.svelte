@@ -1,9 +1,11 @@
----
-  export let size = "50px";
-  export let strokeWidth = "1.1";
-  export let color = "#000000";
-  export let fill = "none";
----
+<script>
+
+export let size = "50px";
+export let strokeWidth = "1.1";
+export let color = "#000000";
+export let fill = "none";
+
+</script>
 
 <svg
   width={size}
@@ -16,6 +18,5 @@
     d="M19 19L6 6m0 0v12.48M6 6h12.48"
     stroke={color}
     stroke-linecap="round"
-    stroke-linejoin="round"
-  /></svg
+    stroke-linejoin="round"></path></svg
 >

@@ -1,5 +1,10 @@
 <script lang="ts">
+  import ArrowTl from "../Icons/ArrowTl.svelte";
+  import ArrowTr from "../Icons/ArrowTr.svelte";
+
   let isOpen = true;
+
+  const iconSize = "32px";
 
   type Heading = {
     depth: number;
@@ -17,14 +22,11 @@
 {#if headings.length !== 0}
   <div class="flex flex-col space-y-2">
     <div class="flex items-center space-x-2">
-      <button
-        on:click={toggleButton}
-        class="transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none"
-      >
+      <button on:click={toggleButton} class="bull_shit">
         {#if isOpen}
-          <slot name="open" />
+          <ArrowTl size={"32px"} />
         {:else}
-          <slot name="closed" />
+          <ArrowTr size={"32px"} />
         {/if}
       </button>
       <span class="text-lg font-semibold">Table of Contents</span>
@@ -51,3 +53,9 @@
     </div>
   </div>
 {/if}
+
+<!-- <style>
+  .bull_shit {
+    @apply hover:bg-slate-300;
+  }
+</style> -->

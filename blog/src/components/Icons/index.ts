@@ -1,6 +1,6 @@
 export { default as AreNa } from "./AreNA.astro";
-export { default as ArrowTl } from "./ArrowTl.astro";
-export { default as ArrowTr } from "./ArrowTr.astro";
+export { default as ArrowTl } from "./ArrowTl.svelte";
+export { default as ArrowTr } from "./ArrowTr.svelte";
 export { default as Code } from "./Code.astro";
 export { default as Folder } from "./Folder.astro";
 export { default as Github } from "./Github.astro";

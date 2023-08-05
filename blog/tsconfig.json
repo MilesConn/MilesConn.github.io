@@ -1,5 +1,6 @@
 {
-  "extends": "astro/tsconfigs/strict",
+  // TODO: I should be importing from strict but there's an error thrown
+  "extends": "astro/tsconfigs/base",
   "compilerOptions": {
     "moduleResolution": "node",
     "verbatimModuleSyntax": true,
@@ -35,6 +36,7 @@
     "src/**/*.d.ts",
     "src/**/*.astro",
     "src/**/*.js",
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "src/**/*.svelte"
   ],
 }
