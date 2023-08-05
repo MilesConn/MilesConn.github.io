@@ -1,3 +1,4 @@
 - [ ] Move to nano stores
 - [ ] Convert ditheredImage to support buildtime and pre build
 - [ ] Update all tailwind theming stuff
+- [ ] Get svelte working properly

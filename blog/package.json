@@ -30,12 +30,13 @@
     "gray-matter": "^4.0.3",
     "lunr": "^2.3.9",
     "mdx": "^0.3.1",
-    "svelte": "^4.1.2",
+    "svelte": "^4.0.0",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.1.6"
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "^0.11.2",
+    "@fontsource/alfa-slab-one": "^5.0.7",
     "@seregpie/three.text-sprite": "^3.2.0",
     "@theatre/core": "^0.6.1",
     "@theatre/studio": "^0.6.1",
@@ -45,6 +46,7 @@
     "@threlte/rapier": "^0.5.0",
     "@threlte/theatre": "^0.0.2",
     "canvas": "^2.11.2",
+    "nanostores": "^0.9.3",
     "remark": "^14.0.2",
     "remark-mdx": "^2.2.1",
     "rgbquant": "^1.1.2",
