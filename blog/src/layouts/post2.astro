@@ -9,7 +9,6 @@ import { extractLinks } from "src/lib/markdownUtils";
 import LineComponent from "$/components/LineComponent.astro";
 import Tag from "$/components/Tag.astro";
 import TableOfContents from "$/components/TableOfContents/index.svelte";
-import { ArrowTl, ArrowTr } from "$/components/Icons";
 
 const { content, rawContent, headings } = Astro.props;
 
@@ -47,8 +46,7 @@ const links = extractLinks(rawContent);
         }
       </div>
     </div>
-    <TableOfContents headings={headings} client:load>
-    </TableOfContents>
+    <TableOfContents headings={headings} client:load />
 
     <!--<img src={content.image} alt={content.title} />-->
     <Prose>
