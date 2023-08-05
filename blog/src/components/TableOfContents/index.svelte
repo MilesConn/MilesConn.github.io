@@ -62,3 +62,4 @@
     {/if}
   </div>
 {/if}
+<!-- https://docs.astro.build/en/guides/markdown-content/#syntax-highlighting -->

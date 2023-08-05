@@ -40,9 +40,9 @@ module.exports = {
           css: {
             //  TODO: figure out why I can't set default fonts here for paragraph
             // I am not a himbo
-            p: {
-              "font-family": "Fraunces",
-            },
+            // p: {
+            //   "font-family": "Fraunces",
+            // },
             a: {
               color: colors.dark.primary,
               "&:hover": {
