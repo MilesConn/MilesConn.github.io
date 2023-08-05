@@ -11,6 +11,6 @@
 
 <style>
   .header__title {
-    @apply text-4xl font-extrabold md:text-5xl text-theme-secondary dark:text-theme-dark-secondary;
+    @apply text-1xl font-extrabold md:text-5xl text-theme-secondary dark:text-theme-dark-secondary;
   }
 </style>
