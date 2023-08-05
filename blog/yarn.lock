@@ -795,6 +795,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource/alfa-slab-one@npm:^5.0.7":
+  version: 5.0.7
+  resolution: "@fontsource/alfa-slab-one@npm:5.0.7"
+  checksum: 4c17295de40e6053f60aecc19a1771d8af5afd438244061b276f711ff44d4377ccd38301d1eefdccc0163caf231bdb5c304d4f51f3fdf9ff9013f79f382a9f5a
+  languageName: node
+  linkType: hard
+
 "@fontsource/fira-sans@npm:^5.0.5":
   version: 5.0.5
   resolution: "@fontsource/fira-sans@npm:5.0.5"
@@ -1595,6 +1602,7 @@ __metadata:
     "@astrojs/svelte": ^3.1.0
     "@astrojs/tailwind": ^4.0.0
     "@dimforge/rapier3d-compat": ^0.11.2
+    "@fontsource/alfa-slab-one": ^5.0.7
     "@fontsource/fira-sans": ^5.0.5
     "@seregpie/three.text-sprite": ^3.2.0
     "@tailwindcss/aspect-ratio": ^0.4.2
@@ -1616,11 +1624,12 @@ __metadata:
     gray-matter: ^4.0.3
     lunr: ^2.3.9
     mdx: ^0.3.1
+    nanostores: ^0.9.3
     remark: ^14.0.2
     remark-mdx: ^2.2.1
     rgbquant: ^1.1.2
     sharp: ^0.32.4
-    svelte: ^4.1.2
+    svelte: ^4.0.0
     svelte-sequential-preprocessor: ^2.0.1
     tailwindcss: ^3.3.3
     three: ^0.154.0
@@ -5090,6 +5099,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nanostores@npm:^0.9.3":
+  version: 0.9.3
+  resolution: "nanostores@npm:0.9.3"
+  checksum: aad0db366a3fa82d1e3664199145cd28f71ecb4fc6f3fcaeb758400485efbd8f888fcb9db3cca4827c5ee54a5f79451ae6f8bf5080b54befad50469c411001d0
+  languageName: node
+  linkType: hard
+
 "napi-build-utils@npm:^1.0.1":
   version: 1.0.2
   resolution: "napi-build-utils@npm:1.0.2"
@@ -6799,6 +6815,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"svelte@npm:^4.0.0":
+  version: 4.1.2
+  resolution: "svelte@npm:4.1.2"
+  dependencies:
+    "@ampproject/remapping": ^2.2.1
+    "@jridgewell/sourcemap-codec": ^1.4.15
+    "@jridgewell/trace-mapping": ^0.3.18
+    acorn: ^8.9.0
+    aria-query: ^5.3.0
+    axobject-query: ^3.2.1
+    code-red: ^1.0.3
+    css-tree: ^2.3.1
+    estree-walker: ^3.0.3
+    is-reference: ^3.0.1
+    locate-character: ^3.0.0
+    magic-string: ^0.30.0
+    periscopic: ^3.1.0
+  checksum: f194763fe7c2ac252d815590dd3a1b3f9b031ac8e517bad8c2f44c81d7db236e720e852792b5aeab8de2cc5771a7cde67d6418156d726a811894563a68b30b90
+  languageName: node
+  linkType: hard
+
 "svelte@npm:^4.0.1":
   version: 4.0.4
   resolution: "svelte@npm:4.0.4"
@@ -6817,27 +6854,6 @@ __metadata:
     magic-string: ^0.30.0
     periscopic: ^3.1.0
   checksum: 22ce120b1d588db0245f22a3d4bb9d386aeb0d993c5c63b85f80d8688d3376e2080558aaa4ead0a8225eddc74b75e2a42dbd12281548cd86e0069cc49b0a0ada
-  languageName: node
-  linkType: hard
-
-"svelte@npm:^4.1.2":
-  version: 4.1.2
-  resolution: "svelte@npm:4.1.2"
-  dependencies:
-    "@ampproject/remapping": ^2.2.1
-    "@jridgewell/sourcemap-codec": ^1.4.15
-    "@jridgewell/trace-mapping": ^0.3.18
-    acorn: ^8.9.0
-    aria-query: ^5.3.0
-    axobject-query: ^3.2.1
-    code-red: ^1.0.3
-    css-tree: ^2.3.1
-    estree-walker: ^3.0.3
-    is-reference: ^3.0.1
-    locate-character: ^3.0.0
-    magic-string: ^0.30.0
-    periscopic: ^3.1.0
-  checksum: f194763fe7c2ac252d815590dd3a1b3f9b031ac8e517bad8c2f44c81d7db236e720e852792b5aeab8de2cc5771a7cde67d6418156d726a811894563a68b30b90
   languageName: node
   linkType: hard
 

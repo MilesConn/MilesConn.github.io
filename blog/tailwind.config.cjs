@@ -18,6 +18,9 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ["Fira Code", ...fontFamily.sans],
+      serif: ["Castoro", ...fontFamily.serif],
+      display: ["Alfa Slab One"],
+      mono: ["Fira Mono", ...fontFamily.sans],
     },
     extend: {
       colors: {
