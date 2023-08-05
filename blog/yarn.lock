@@ -802,10 +802,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource/castoro@npm:^5.0.7":
+  version: 5.0.7
+  resolution: "@fontsource/castoro@npm:5.0.7"
+  checksum: 53983f74557c4c77a1f936a0a34933976de71b8642bf9acdea9d56a2de3c89c86c314c43686322a873afa9af957891a43974f29575614abd07837d92a3a8a2f0
+  languageName: node
+  linkType: hard
+
 "@fontsource/fira-sans@npm:^5.0.5":
   version: 5.0.5
   resolution: "@fontsource/fira-sans@npm:5.0.5"
   checksum: 9e899809cc8a64f68fe903934c5cdbfc7fe16897acda814cba2df8cafc3483892b3a118628b6adfe0dd5b3ddcb8a7d22072b8ca3df8c0d450572313f3c8b2183
+  languageName: node
+  linkType: hard
+
+"@fontsource/shippori-mincho@npm:^5.0.6":
+  version: 5.0.6
+  resolution: "@fontsource/shippori-mincho@npm:5.0.6"
+  checksum: 85bfd446f06ed2c328ab6f5539a04b7f0fa14cc5fcd69a827cbc0693302fbe00df2b8e06f78c10372049be8a464807d38bdb863f66725c1d68498ce83cb99f54
   languageName: node
   linkType: hard
 
@@ -1610,7 +1624,9 @@ __metadata:
     "@astrojs/tailwind": ^4.0.0
     "@dimforge/rapier3d-compat": ^0.11.2
     "@fontsource/alfa-slab-one": ^5.0.7
+    "@fontsource/castoro": ^5.0.7
     "@fontsource/fira-sans": ^5.0.5
+    "@fontsource/shippori-mincho": ^5.0.6
     "@seregpie/three.text-sprite": ^3.2.0
     "@tailwindcss/aspect-ratio": ^0.4.2
     "@tailwindcss/forms": ^0.5.4

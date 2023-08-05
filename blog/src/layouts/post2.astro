@@ -3,7 +3,9 @@ import { SITE } from "$/config";
 import MainLayout from "$/components/MainLayout.astro";
 import BaseHead from "$/components/BaseHead.astro";
 // TODO: I don't like this and I'd rather have fonts in our public folder
+import "@fontsource/castoro";
 import "@fontsource/alfa-slab-one";
+import "@fontsource/shippori-mincho";
 import Prose from "$/components/Prose.astro";
 import { extractLinks } from "src/lib/markdownUtils";
 import LineComponent from "$/components/LineComponent.astro";
@@ -26,6 +28,7 @@ const links = extractLinks(rawContent);
   </head>
   <MainLayout>
     <div class="py-4 mb-1">
+      <!-- TODO: Figure out how to get arbitrary value one off font for  -->
       <h1
         class="text-4xl font-display text-theme-primary dark:text-theme-dark-primary"
       >
@@ -46,11 +49,15 @@ const links = extractLinks(rawContent);
         }
       </div>
     </div>
+    <!-- TODO: figure out why client load is necessary -->
     <TableOfContents headings={headings} client:load />
 
     <!--<img src={content.image} alt={content.title} />-->
-    <Prose>
+    <!-- TODO: get the block quote font to work :)  -->
+    <article
+      class="prose prose-p:font-serif prose-blockquote:font-['Shippori Mincho']"
+    >
       <slot />
-    </Prose>
+    </article>
   </MainLayout>
 </html>
