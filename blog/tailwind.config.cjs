@@ -12,8 +12,9 @@ const themeConfig =
     : config.default;
 const { colors } = themeConfig;
 module.exports = {
+  mode: "jit",
   darkMode: "class",
-  content: ["./public/**/*.html", "./src/**/*.{astro,js,ts}"],
+  content: ["./public/**/*.html", "./src/**/*.{astro,js,ts,svelte}"],
   safelist: ["dark"],
   theme: {
     fontFamily: {
@@ -49,13 +50,7 @@ module.exports = {
                 color: colors.primary,
               },
             },
-            blockquote: {
-              color: colors.primary,
-              borderColor: colors.dark.primary,
-            },
-            "blockquote > p::before, p::after": {
-              color: colors.dark.primary,
-            },
+
             h1: {
               color: colors.dark.secondary,
             },

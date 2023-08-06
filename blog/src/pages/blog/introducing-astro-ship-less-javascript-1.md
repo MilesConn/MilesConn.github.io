@@ -28,6 +28,12 @@ Today I'm excited to publicly share Astro: a new kind of static site builder tha
 
 > links are better
 
+> links are better
+
+> links are better
+
+> links are better
+
 [I know](they-are-better)
 
 This post marks the first public beta release of Astro. Missing features and bugs are still to be expected at this early stage. There are still some months to go before an official 1.0 release, but there are already several fast sites built with Astro in production today. We would love your early feedback as we move towards a v1.0 release later this year.

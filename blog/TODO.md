@@ -2,3 +2,5 @@
 - [ ] Convert ditheredImage to support buildtime and pre build
 - [ ] Update all tailwind theming stuff
 - [ ] Get svelte working properly
+- [ ] Add backlinks to markdown also
+- [ ] [this](https://leosvel.dev/blog/creating-my-personal-website-with-astro-tailwindcss-and-nx/#improving-the-blog-post-page)
