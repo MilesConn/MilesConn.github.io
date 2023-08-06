@@ -43,6 +43,7 @@
         <ul>
           {#each headings as heading}
             <!-- TODO: couldn't get tailwind to work so had to do it by hand...  -->
+            <!-- I think this will never work because of how tailwind works.default.. -->
             <!-- TODO: there's some random white line on the page that I'll have to fix later -->
             <li style="padding-left: {heading.depth * 0.75}rem;">
               <a

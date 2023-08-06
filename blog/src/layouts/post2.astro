@@ -15,6 +15,7 @@ import TableOfContents from "$/components/TableOfContents/index.svelte";
 const { content, rawContent, headings } = Astro.props;
 
 console.log("headings ", headings);
+// We are going to have convert obsidian links to normal links
 const links = extractLinks(rawContent);
 ---
 
@@ -54,10 +55,26 @@ const links = extractLinks(rawContent);
 
     <!--<img src={content.image} alt={content.title} />-->
     <!-- TODO: get the block quote font to work :)  -->
-    <article
-      class="prose prose-p:font-serif prose-blockquote:font-['Shippori Mincho']"
-    >
+    <article class="prose prose-p:font-serif">
       <slot />
     </article>
   </MainLayout>
+
+  <!-- TODO: this does work -->
+  <style>
+    .foo__bar {
+      /* @apply prose-p:text-blue-600; */
+      /* @apply text-red-600; */
+      /* color: #60a5fa !important; */
+      /* @apply text-red-600; */
+      /* @apply px-8; */
+    }
+    .font__shiporri {
+      font-family: "Shippori Mincho";
+    }
+
+    /* article.prose :is(:where(blockquote):not(:where([class~="not-prose"] *))) {
+      @apply pl-4 border-l-4 border-blue-500 relative;
+    } */
+  </style>
 </html>

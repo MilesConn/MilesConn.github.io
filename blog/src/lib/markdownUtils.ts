@@ -17,3 +17,4 @@ export function extractLinks(markdownContent: () => string) {
 
   return links;
 }
+
