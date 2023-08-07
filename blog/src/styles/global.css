@@ -22,14 +22,22 @@
   src: url("/fonts/Fraunces[SOFT,WONK,opsz,wght].woff2");
 }
 
+@font-face {
+  font-family: "Shippori Mincho";
+  font-display: optional;
+  src: url("/fonts/ShipporiMincho-Medium.ttf");
+}
+
 /* This works! */
 /* 
   		Why is this here? Good question! So I wanted to style block 
 		quotes in layouts. Layouts use <slots> and are passed
+		
+		TODO! Explain how this works lmao
 	*/
 @layer components {
   .prose blockquote {
-    @apply p-4 relative border-l-4 border-blue-500;
+    @apply p-4 relative border-l-4 border-blue-500 font-['Shippori_Mincho'];
   }
 
   /* This creates the triangles themselves  */
