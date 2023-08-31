@@ -37,7 +37,8 @@
 	*/
 @layer components {
   .prose blockquote {
-    @apply p-4 relative border-l-4 border-blue-500 font-['Shippori_Mincho'];
+    /* If you change the size of a border then you need to change the positioning of everything */
+    @apply p-4 relative border-l-2 border-blue-500 font-['Shippori_Mincho'];
   }
 
   /* This creates the triangles themselves  */
@@ -53,26 +54,28 @@
 
   /* This controls positioning */
   .prose blockquote.triangle::before {
-    @apply -top-2.5 left-[-4px];
+    @apply -top-2.5 left-[-2px];
     border-bottom-color: transparent;
   }
 
   .prose blockquote.triangle::after {
-    @apply bottom-[-2.5px] left-[-4px];
+    @apply bottom-[-2.5px] left-[-2px];
     border-top-color: transparent;
   }
 
+  /* This creates the squares themselves  */
   .prose blockquote.square::before,
   .prose blockquote.square::after {
     @apply absolute w-3 h-3 bg-blue-500 transform rotate-45 content-[''];
   }
 
+  /* This controls positioning */
   .prose blockquote.square::before {
-    @apply -top-2 -left-2;
+    @apply -top-2 -left-[6.5px];
   }
 
   .prose blockquote.square::after {
-    @apply -bottom-2 -left-2;
+    @apply -bottom-2 -left-[6.5px];
   }
 
   /* .prose blockquote::before,
