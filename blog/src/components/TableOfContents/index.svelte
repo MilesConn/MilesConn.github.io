@@ -3,6 +3,7 @@
   import ArrowTr from "../Icons/ArrowTr.svelte";
   import { slide } from "svelte/transition";
   import FontTesting from "../pages/FontTesting.svelte";
+  import { linear } from "svelte/easing";
 
   let isOpen = true;
 
@@ -20,6 +21,10 @@
   function toggleButton() {
     isOpen = !isOpen;
   }
+
+  $: rotationStyle = isOpen
+    ? "transform: rotate(180deg); transition: transform 0.3s;"
+    : "transform: rotate(-90); transition: transform 0.3s;";
 </script>
 
 <!-- TODO: We learned we can apply styles with with tailwind apply but not inline which is :(  -->
@@ -30,29 +35,29 @@
   <div class="flex flex-col space-y-2">
     <div class="flex items-center space-x-2">
       <button on:click={toggleButton}>
-        {#if isOpen}
+        <div style={rotationStyle}>
           <ArrowTl size={iconSize} {strokeWidth} />
-        {:else}
-          <ArrowTr size={iconSize} {strokeWidth} />
-        {/if}
+        </div>
       </button>
       <span class="text-lg font-semibold">Table of Contents</span>
     </div>
     {#if isOpen}
       <div transition:slide={{ duration: 300 }}>
-        <ul>
+        <ul class={`pl-6`}>
           {#each headings as heading}
             <!-- TODO: couldn't get tailwind to work so had to do it by hand...  -->
             <!-- I think this will never work because of how tailwind works.default.. -->
-            <!-- TODO: there's some random white line on the page that I'll have to fix later -->
-            <li style="padding-left: {heading.depth * 0.75}rem;">
+            <!-- there's some random white line on the page that's made by display: list-item so we manually override it -->
+            <li
+              class={`pl-${heading.depth * 3} flex`}
+              style="padding-left: {heading.depth * 0.75}rem;"
+            >
               <a
                 href="#{heading.slug}"
-                style="color: black; text-decoration: none;"
-                on:mouseover={() => (event.target.style.color = "blue")}
-                on:mouseout={() => (event.target.style.color = "black")}
-                >{heading.text}</a
+                class="text-black no-underline hover:text-blue-500"
               >
+                {heading.text}
+              </a>
               {#if heading.depth === 1}
                 <hr />
               {/if}
