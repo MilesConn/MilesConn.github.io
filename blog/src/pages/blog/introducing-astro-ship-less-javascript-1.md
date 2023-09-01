@@ -12,6 +12,8 @@ image: https://images.unsplash.com/photo-1589409514187-c21d14df0d04?ixid=MnwxMjA
 category: design
 ---
 
+# Top level header oml
+
 Unfortunately, modern web development has been trending in the opposite direction—towards more. More JavaScript, more features, more moving parts, and ultimately more complexity needed to keep it all running smoothly.
 
 Today I'm excited to publicly share Astro: a new kind of static site builder that delivers lightning-fast performance with a modern developer experience. To design Astro, we borrowed the best parts of our favorite tools and then added a few innovations of our own, including:
