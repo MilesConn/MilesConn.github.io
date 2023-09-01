@@ -7,15 +7,16 @@ type PointShape = (typeof pointShape)[number];
 type Props = {
   startShape?: PointShape;
   endShape?: PointShape;
+  className?: string;
 };
 
-let { startShape, endShape } = Astro.props;
+let { startShape, endShape, className } = Astro.props;
 
 startShape = startShape ?? randomElem(pointShape);
 endShape = endShape ?? randomElem(pointShape);
 ---
 
-<div class="flex items-center">
+<div class={`flex items-center ${className ?? ""}`}>
   <div class={`shape w-3 h-3 ${startShape}`}></div>
   <div class="line flex-grow h-0.5 bg-black"></div>
   <div class={`shape w-3 h-3 ${endShape}`}></div>
