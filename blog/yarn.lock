@@ -603,6 +603,11 @@
   resolved "https://registry.yarnpkg.com/@fontsource/castoro/-/castoro-5.0.8.tgz#7ca27d21bb4c42daa1457dece2944cfcab1b7c0b"
   integrity sha512-z/3f5RdFj+SWyqx2BEzhD8fkI+1GF0eIWmM5oW+IR5scN5fw1lQha3+rUBn5TJ4MuEn9hjjTu/dU+dwdAL6tng==
 
+"@fontsource/fira-mono@^5.0.8":
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/fira-mono/-/fira-mono-5.0.8.tgz#3222020d963e71890f244333cdf98755c919eff6"
+  integrity sha512-8OJiUK2lzJjvDlkmamEfhtpL1cyFApg1Pk4kE5Pw5UTf1ETF3Yy/pprgwV5I+LQPDjuFvinsinT9xSUZ2b/zuQ==
+
 "@fontsource/fira-sans@^5.0.5":
   version "5.0.9"
   resolved "https://registry.yarnpkg.com/@fontsource/fira-sans/-/fira-sans-5.0.9.tgz#5af08acc8dbb9f706c3b6155698cead3ca865bdb"

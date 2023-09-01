@@ -32,8 +32,7 @@
 <!-- Something to do with pointer events? -->
 
 {#if headings.length !== 0}
-  <!-- TODO fix this here -->
-  <div class="flex flex-col space-y-2 max-w-s mx-auto">
+  <div class="flex flex-col items-start space-y-1">
     <div class="flex items-center space-x-2">
       <button on:click={toggleButton}>
         <div style={rotationStyle}>
@@ -43,7 +42,7 @@
       <span class="text-lg font-semibold">Table of Contents</span>
     </div>
     {#if isOpen}
-      <div transition:slide={{ duration: 300 }} class={"ml-[6rem]"}>
+      <div transition:slide={{ duration: 300 }} class={"ml-8"}>
         <ul>
           {#each headings as heading}
             <!-- TODO: couldn't get tailwind to work so had to do it by hand...  -->

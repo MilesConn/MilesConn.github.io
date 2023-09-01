@@ -6,6 +6,7 @@ import BaseHead from "$/components/BaseHead.astro";
 import "@fontsource/castoro";
 import "@fontsource/alfa-slab-one";
 import "@fontsource/shippori-mincho";
+import "@fontsource/fira-mono";
 import Prose from "$/components/Prose.astro";
 import { extractLinks } from "src/lib/markdownUtils";
 import LineComponent from "$/components/LineComponent.astro";
@@ -28,21 +29,22 @@ const links = extractLinks(rawContent);
     />
   </head>
   <MainLayout>
-    <div class="py-4 mb-1 max-w-xl mx-auto">
+    <div class="py-4 mb-1">
       <!-- TODO: Figure out how to get arbitrary value one off font for  -->
       <h1
         class="text-4xl font-display text-theme-primary dark:text-theme-dark-primary"
       >
         {content.title}
       </h1>
-      <span class="text-gray-400 p-5"
-        >{
+      <span class="text-black p-5 font-mono">
+        last modified:
+        {
           new Intl.DateTimeFormat("en-US", { dateStyle: "full" }).format(
             new Date(content.date)
           )
         }
       </span>
-      <LineComponent />
+      <LineComponent className="mx-1" />
       <div class="inline-flex gap-2">
         {
           content.tags.length > 0 &&
@@ -63,29 +65,15 @@ const links = extractLinks(rawContent);
 
   <!-- TODO: this does work -->
   <style>
-    This
+    /* This
       is
       good
       to
-      know
-      .TableOfContents
+      know */
+    .TableOfContents
       :global(> * + :where(astro-island, astro-slot) > *:first-child) {
-      @apply max-w-md mx-auto;
+      @apply mb-5 ml-1;
     }
-
-    /* .TableOfContents > * + *,
-    .TableOfContents > * + :where(astro-island, astro-slot) > *:div {
-      margin-top: 20rem;
-    }
-    .TableOfContent :global(> astro-island > div) {
-      margin-top: 20rem;
-    }
-
-    .TableOfContents > *,
-    .TableOfContents > astro-island > *:div,
-    .TableOfContents > astro-slot > *:div {
-      margin-top: 20rem;
-    } */
 
     /* Works */
     .foo__bar {
