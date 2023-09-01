@@ -3,6 +3,13 @@ import { visit } from "unist-util-visit";
 export function randomBorderCaps() {
   return function transformer(tree) {
     visit(tree, "blockquote", (node) => {
+      // TODO: if we want to handle article quotes differently then we should
+      // have them in the yaml
+      // if (!firstQuote) {
+      //   console.log("First block quote with ", node.data);
+      //   firstQuote = true;
+      //   return;
+      // }
       // Get a random number (either 0 or 1)
       const randomNum = Math.floor(Math.random() * 2);
 

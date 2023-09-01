@@ -38,7 +38,11 @@
 @layer components {
   .prose blockquote {
     /* If you change the size of a border then you need to change the positioning of everything */
-    @apply p-4 relative border-l-2 border-blue-500 font-['Shippori_Mincho'];
+    @apply p-4 ml-10 relative border-l-2 border-blue-500 font-['Shippori_Mincho'];
+  }
+
+  .prose blockquote p {
+    @apply font-['Shippori_Mincho'] text-blue-500
   }
 
   /* This creates the triangles themselves  */

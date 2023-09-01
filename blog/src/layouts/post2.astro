@@ -28,7 +28,7 @@ const links = extractLinks(rawContent);
     />
   </head>
   <MainLayout>
-    <div class="py-4 mb-1">
+    <div class="py-4 mb-1 max-w-xl mx-auto">
       <!-- TODO: Figure out how to get arbitrary value one off font for  -->
       <h1
         class="text-4xl font-display text-theme-primary dark:text-theme-dark-primary"
@@ -50,18 +50,44 @@ const links = extractLinks(rawContent);
         }
       </div>
     </div>
-    <!-- TODO: figure out why client load is necessary -->
-    <TableOfContents headings={headings} client:load />
+    <div class="TableOfContents">
+      <TableOfContents headings={headings} client:load />
+    </div>
 
     <!--<img src={content.image} alt={content.title} />-->
     <!-- TODO: get the block quote font to work :)  -->
-    <article class="prose prose-p:font-serif">
+    <article class="prose prose-p:font-serif mx-auto">
       <slot />
     </article>
   </MainLayout>
 
   <!-- TODO: this does work -->
   <style>
+    This
+      is
+      good
+      to
+      know
+      .TableOfContents
+      :global(> * + :where(astro-island, astro-slot) > *:first-child) {
+      @apply max-w-md mx-auto;
+    }
+
+    /* .TableOfContents > * + *,
+    .TableOfContents > * + :where(astro-island, astro-slot) > *:div {
+      margin-top: 20rem;
+    }
+    .TableOfContent :global(> astro-island > div) {
+      margin-top: 20rem;
+    }
+
+    .TableOfContents > *,
+    .TableOfContents > astro-island > *:div,
+    .TableOfContents > astro-slot > *:div {
+      margin-top: 20rem;
+    } */
+
+    /* Works */
     .foo__bar {
       /* @apply prose-p:text-blue-600; */
       /* @apply text-red-600; */
