@@ -43,7 +43,7 @@ const descriptions = [
 
 export const SITE = {
   name: "Miles",
-  title: "Astro - Ink",
+  title: "the ephemeral homestead",
   description: "Crisp, minimal, personal blog theme for Astro",
   url: "https://milesconn.io",
   githubUrl: "https://github.com/MilesConn",

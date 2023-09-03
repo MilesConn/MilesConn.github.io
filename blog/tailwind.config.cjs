@@ -30,6 +30,8 @@ module.exports = {
         },
         "black-coffee": "#352f33",
         "dutch-white": "#D5C7AA",
+        "expired-seaweed-salad": "#47585C",
+        "unripe-plum": "#4F455C",
       },
       typography: (theme) => ({
         dark: {
