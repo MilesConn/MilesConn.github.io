@@ -1,22 +1,36 @@
 ---
+import { Github, Twitter } from "./Icons";
 const currentDate = new Date();
+
+const iconSize = "36px";
 ---
 
-<footer class="footer">
-  <nav class="nav">
-    <div>
-      <!-- TODO: Spread these  out evenely at the bottom -->
-      {currentDate.getFullYear()} &copy; Copyright notice | Last updated: {
-        currentDate.getMonth() + 1
-      }/{currentDate.getDate()}/{
-        currentDate.getFullYear().toString().substring(2)
-      }
+<footer class="py-4 flex justify-between items-center gap-4 bg-unripe-plum">
+  <div class="flex flex-col font-mono text-white pl-10">
+    <p>copyright {currentDate.getFullYear()}</p>
+    <div class="pl-4 text-sm">
+      <p>
+        Code:
+        <a
+          href="https://opensource.org/license/mit/"
+          target="_blank"
+          class="underline"
+          rel="noopener noreferrer">MIT</a
+        >
+      </p>
+      <p>
+        Text:
+        <a
+          href="https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode"
+          target="_blank"
+          class="underline"
+          rel="noopener noreferrer">CC BY-NC-ND 4.0</a
+        >
+      </p>
     </div>
-  </nav>
+  </div>
+  <div class="flex items-center gap-3 pr-10">
+    <Github size={iconSize} strokeWidth="1.5" client:visible />
+    <Twitter size={iconSize} fill="black" client:visible />
+  </div>
 </footer>
-
-<style>
-  .footer {
-    @apply py-6 border-t;
-  }
-</style>
