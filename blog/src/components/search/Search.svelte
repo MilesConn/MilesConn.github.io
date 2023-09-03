@@ -11,6 +11,7 @@
   let searchResults = [];
 
   onMount(async () => {
+    // TODO: overhaul this
     const lunr = (await import("lunr")).default;
     const resp = await fetch("/search-index.json");
     searchableDocs = await resp.json();
@@ -97,10 +98,10 @@
     @apply text-theme-primary absolute top-2 left-2;
   }
   .search__results {
-    @apply w-96 h-64 py-4 overflow-y-auto;
+    @apply w-96 h-64 py-4 overflow-y-auto text-white;
   }
   .search__results--none {
-    @apply text-center;
+    @apply text-center text-white;
   }
   .note {
     @apply w-full text-center text-white;

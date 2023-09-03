@@ -9,10 +9,11 @@ export const NAV_ITEMS: NavItems = {
     path: "/blog",
     title: "blog",
   },
-  tags: {
-    path: "/tags",
-    title: "tags",
-  },
+  // TODO: get rid of this
+  // tags: {
+  //   path: "/tags",
+  //   title: "tags",
+  // },
 };
 
 const siteNames = [
