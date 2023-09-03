@@ -4,61 +4,63 @@ import SvgIcon from "./SvgIcon/SvgIcon.astro";
 import ModeSwitcherBtn from "./ModeHandler/ModeSwitcherBtn.svelte";
 import SearchBtn from "./search/SearchBtn.svelte";
 
-const { siteNames, descriptions } = SITE;
+const { title, descriptions } = SITE;
 const randomElem = (x) => x[Math.floor(Math.random() * x.length)];
-const randomTitle = randomElem(siteNames);
+// const randomTitle = randomElem(siteNames);
 const randomDescription = randomElem(descriptions);
 ---
 
 <header class="header">
-    <div class="header__meta flex-1">
-        <h3 class="header__title dark:text-theme-dark-secondary">
-            <a href="">{randomTitle}</a>
-        </h3>
-        <div class="header__meta-more flex">
-            <p class="header__desc">
-                {randomDescription}
-            </p>
-            <nav class="header__nav flex">
-                <ul class="header__ref-list">
-                    <li>
-                        <SearchBtn client:visible />
-                    </li>
-                    <li>
-                        <a
-                            href={SITE.githubUrl}
-                            title={`${SITE.name}'s Github URL'`}
-                        >
-                            <SvgIcon>
-                                <path
-                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-                                ></path>
-                            </SvgIcon>
-                        </a>
-                    </li>
-                    <li>
-                        <ModeSwitcherBtn client:visible />
-                    </li>
-                </ul>
-            </nav>
-        </div>
+  <div class="flex-1">
+    <div class="header__title flex flex-col max-w-[15rem] font-mono">
+      <div class="flex justify-between -tracking-[0.22rem]">
+        <span class="text-black">the</span>
+        <span class="text-expired-seaweed-salad">ephemeral</span>
+      </div>
+      <div class="text-unripe-plum">homestead</div>
     </div>
+    <div class="flex">
+      <!-- TODO: we need to store this in local storage with an expiry of 24 or some cache -->
+      <p class="header__desc font-mono -tracking-[0.22rem]">
+        {randomDescription}
+      </p>
+      <nav class="header__nav flex">
+        <ul class="header__ref-list">
+          <li>
+            <SearchBtn client:visible />
+          </li>
+          <li>
+            <a href={SITE.githubUrl} title={`${SITE.name}'s Github URL'`}>
+              <SvgIcon>
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                ></path>
+              </SvgIcon>
+            </a>
+          </li>
+          <li>
+            <ModeSwitcherBtn client:visible />
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 </header>
 
 <style>
-    .header {
-        @apply flex gap-4 border-b py-3 /* border-gray-200 dark:border-gray-700 - check styles/global.css */;
-    }
-    .header__logo {
-        @apply w-16 h-16 rounded-full overflow-hidden;
-    }
-    .header__title {
-        @apply text-4xl font-extrabold md:text-5xl text-theme-secondary dark:text-theme-dark-secondary;
-    }
-    .header__desc {
-        @apply text-xl flex-1 dark:text-gray-200;
-    }
-    .header__ref-list {
-        @apply flex gap-3 text-gray-400;
-    }
+  .header {
+    @apply flex gap-4 border-b py-3 /* border-gray-200 dark:border-gray-700 - check styles/global.css */;
+  }
+  .header__logo {
+    @apply w-16 h-16 rounded-full overflow-hidden;
+  }
+  .header__title {
+    @apply text-2xl font-extrabold text-theme-secondary dark:text-theme-dark-secondary;
+  }
+  .header__desc {
+    @apply text-lg flex-1 dark:text-gray-200;
+  }
+  .header__ref-list {
+    @apply flex gap-3 text-gray-400;
+  }
 </style>
