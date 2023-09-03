@@ -1,20 +1,15 @@
 ---
-import DefaultPageLayout from "$/layouts/default.astro";
 import { SITE } from "src/config";
-import Prose from "$/components/Prose.astro";
-import { AreNa, Folder, MediaImage } from "$/components/Icons";
-
-const title = "About";
-const description = "About me :)";
+import BaseHead from "$/components/BaseHead.astro";
+import MainLayout from "$/components/MainLayout.astro";
 ---
 
-<DefaultPageLayout content={{ title, description }}>
-  <Prose>
-    I'm still not sure who I am. Come back later maybe we can find out together!
-
-    <br />
-    <h2>Socials</h2>
-    <a href={SITE.twitterUrl}> Twitter</a>
-  </Prose>
-  <Folder />
-</DefaultPageLayout>
+<!-- TODO: extract this to work with default.astro --><!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE.title} description="About me landing page" />
+  </head>
+  <MainLayout showHeader={false}>
+    <p>hi</p>
+  </MainLayout>
+</html>

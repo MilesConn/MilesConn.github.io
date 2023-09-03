@@ -1,16 +1,21 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import Header from "./Header.astro";
-import Footer from "./Footer.astro";
 import Nav from "./Nav.astro";
 import SearchModal from "./search/SearchModal.svelte";
+
+export type Props = {
+  showHeader?: boolean;
+};
+
+const { showHeader = true } = Astro.props;
 ---
 
 <BaseLayout>
   <br class="my-4" />
   <Header />
   <!-- TODO: get rid of this -->
-  <Nav />
+  {showHeader && <Nav />}
   <div class="content">
     <slot />
   </div>
@@ -23,7 +28,8 @@ import SearchModal from "./search/SearchModal.svelte";
 <style>
   .content {
     /* TODO: review this minheight */
-    min-height: 580px;
+    /* min-height: 100vh; */
+    /* flex: 1 0 auto; */
     @apply max-w-xl mx-auto;
   }
 </style>
