@@ -42,7 +42,7 @@
       <span class="text-lg font-semibold">Table of Contents</span>
     </div>
     {#if isOpen}
-      <div transition:slide={{ duration: 300 }} class={"ml-8"}>
+      <div transition:slide={{ duration: 300 }} class={"mx-8"}>
         <ul>
           {#each headings as heading}
             <!-- TODO: couldn't get tailwind to work so had to do it by hand...  -->

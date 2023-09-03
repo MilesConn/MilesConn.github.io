@@ -29,7 +29,7 @@ const links = extractLinks(rawContent);
     />
   </head>
   <MainLayout>
-    <div class="py-4 mb-1">
+    <div class="py-4">
       <!-- TODO: Figure out how to get arbitrary value one off font for  -->
       <h1
         class="text-4xl font-display text-theme-primary dark:text-theme-dark-primary"
@@ -45,7 +45,7 @@ const links = extractLinks(rawContent);
         }
       </span>
       <LineComponent className="mx-1" />
-      <div class="inline-flex gap-2">
+      <div class="inline-flex gap-2 mx-4">
         {
           content.tags.length > 0 &&
             content.tags.map((tag: string) => <Tag {tag} />)
@@ -72,7 +72,7 @@ const links = extractLinks(rawContent);
       know */
     .TableOfContents
       :global(> * + :where(astro-island, astro-slot) > *:first-child) {
-      @apply mb-5 ml-1;
+      @apply mb-5 mx-1;
     }
 
     /* Works */
