@@ -88,7 +88,7 @@
     @apply w-full relative bg-theme-primary  p-8  rounded-md shadow-lg;
   }
   input {
-    @apply w-full px-4 py-2 pl-10 text-xl font-semibold text-gray-600 border-0 shadow-inner rounded-md bg-gray-100 placeholder-theme-dark-secondary;
+    @apply w-full px-4 py-2 pl-10 text-xl font-semibold text-gray-600 border-0 shadow-inner rounded-md bg-gray-100;
   }
   .search__ctrl {
     @apply pb-4 relative;
@@ -100,7 +100,7 @@
     @apply w-96 h-64 py-4 overflow-y-auto;
   }
   .search__results--none {
-    @apply text-center text-theme-dark-primary;
+    @apply text-center;
   }
   .note {
     @apply w-full text-center text-white;
