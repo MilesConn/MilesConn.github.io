@@ -42,7 +42,8 @@
   }
 
   .prose blockquote p {
-    @apply font-['Shippori_Mincho'] text-blue-500
+    /* TODO: I don't like the spacing in block quotes */
+    @apply font-['Shippori_Mincho'] text-blue-500 my-[0.05rem]
   }
 
   /* This creates the triangles themselves  */

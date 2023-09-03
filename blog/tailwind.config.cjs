@@ -1,16 +1,5 @@
 const { fontFamily } = require("tailwindcss/defaultTheme");
-const config = require("./tailwind.theme.config");
-/**
- * Find the applicable theme color palette, or use the default one
- */
 
-const themeKey = "ambersky";
-process.env.THEME_KEY = themeKey;
-const themeConfig =
-  process.env.THEME_KEY && config[process.env.THEME_KEY]
-    ? config[process.env.THEME_KEY]
-    : config.default;
-const { colors } = themeConfig;
 module.exports = {
   mode: "jit",
   darkMode: "class",
@@ -26,12 +15,15 @@ module.exports = {
     extend: {
       colors: {
         theme: {
-          ...colors,
+          // ...colors,
+          primary: "#000B00",
+          secondary: "#4D80E6",
         },
         "black-coffee": "#352f33",
         "dutch-white": "#D5C7AA",
         "expired-seaweed-salad": "#47585C",
         "unripe-plum": "#4F455C",
+        oldPaper: "#EAE5E3",
       },
       typography: (theme) => ({
         dark: {
@@ -46,22 +38,21 @@ module.exports = {
             // p: {
             //   "font-family": "Fraunces",
             // },
-            a: {
-              color: colors.dark.primary,
-              "&:hover": {
-                color: colors.primary,
-              },
-            },
-
-            h1: {
-              color: colors.dark.secondary,
-            },
-            h2: {
-              color: colors.dark.secondary,
-            },
-            h3: {
-              color: colors.dark.secondary,
-            },
+            // a: {
+            //   color: colors.dark.primary,
+            //   "&:hover": {
+            //     color: colors.primary,
+            //   },
+            // },
+            // h1: {
+            //   color: colors.dark.secondary,
+            // },
+            // h2: {
+            //   color: colors.dark.secondary,
+            // },
+            // h3: {
+            //   color: colors.dark.secondary,
+            // },
           },
         },
       }),
