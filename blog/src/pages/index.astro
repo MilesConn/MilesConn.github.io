@@ -1,7 +1,15 @@
 ---
 import { SITE } from "src/config";
 import BaseHead from "$/components/BaseHead.astro";
+import { Image } from "astro:assets";
 import MainLayout from "$/components/MainLayout.astro";
+// TODO: get rid of this type error
+import dropCap from "$/assets/dropCap.png";
+import frameMiles from "$/assets/framedMiles.png";
+
+const loremText =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae libero. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.";
+const paragraphs = [loremText.substring(1), loremText, loremText];
 ---
 
 <!-- TODO: extract this to work with default.astro --><!DOCTYPE html>
@@ -11,5 +19,45 @@ import MainLayout from "$/components/MainLayout.astro";
   </head>
   <MainLayout showHeader={false}>
     <p>hi</p>
+    <div class="relative py-2">
+      <!-- Image placement -->
+      <Image src={frameMiles} alt="Image 1" class="float-left w-60 h-60" />
+
+      <!-- top-0 left-1/2 sm:left-0 -translate-x-1/2 sm:translate-x-0 scale-50 float-left -->
+
+      <!-- Text wrapping -->
+      <div class="ml-8 item-body">
+        <!-- Drop Cap -->
+
+        <!-- Paragraphs -->
+
+        <div class="flex items-end">
+          <div class="inline-block">
+            <Image
+              src={dropCap}
+              alt=""
+              class="relative float-left w-12 h-12 inline"
+            />
+          </div>
+          <!-- Drop cap image -->
+          <p class="mb-4 align-bottom">
+            {paragraphs[0].substring(0, 20)}
+          </p>
+        </div>
+        {
+          paragraphs.map((para, index) => (
+            <p class={`mb-4 ${index === 0 ? "drop-cap" : ""}`}>
+              {index === 0 ? para.substring(20) : para}
+            </p>
+          ))
+        }
+      </div>
+    </div>
   </MainLayout>
+  <style>
+    /* .drop-cap::first-letter {
+      float: left;
+      font-size: 2em;
+    } */
+  </style>
 </html>
