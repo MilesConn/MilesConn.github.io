@@ -1,5 +1,6 @@
 ---
 import { Github, Twitter } from "./Icons";
+import AreNA from "./Icons/AreNA.astro";
 const currentDate = new Date();
 
 const iconSize = "36px";
@@ -30,7 +31,14 @@ const iconSize = "36px";
     </div>
   </div>
   <div class="flex items-center gap-3 pr-10">
-    <Github size={iconSize} strokeWidth="1.5" client:visible />
-    <Twitter size={iconSize} fill="black" client:visible />
+    <a href="https://www.are.na/miles-conn-aygvy9psasq">
+      <AreNA size={iconSize} strokeWidth="1.5" client:visible />
+    </a>
+    <a href="https://github.com/MilesConn">
+      <Github size={iconSize} strokeWidth="1.5" client:visible />
+    </a>
+    <a href="https://twitter.com/technoHimbo">
+      <Twitter size={iconSize} fill="black" client:visible />
+    </a>
   </div>
 </footer>
