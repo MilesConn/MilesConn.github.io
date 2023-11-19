@@ -7,9 +7,10 @@ import MainLayout from "$/components/MainLayout.astro";
 import dropCap from "$/assets/dropCap.png";
 import frameMiles from "$/assets/framedMiles.png";
 
-const loremText =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae libero. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.";
-const paragraphs = [loremText.substring(1), loremText, loremText];
+const paragraphs = [
+  "i my name is Miles Conn. I’m currently a student at CMU studying CS. I’m interested in incentive design, compilers, computer graphics",
+  "This is my personal website where I’m going to try and share what I’m working on.",
+];
 ---
 
 <!-- TODO: extract this to work with default.astro --><!DOCTYPE html>
@@ -17,8 +18,7 @@ const paragraphs = [loremText.substring(1), loremText, loremText];
   <head>
     <BaseHead title={SITE.title} description="About me landing page" />
   </head>
-  <MainLayout showHeader={false}>
-    <p>hi</p>
+  <MainLayout showHeader={true}>
     <div class="relative py-2">
       <!-- Image placement -->
       <Image src={frameMiles} alt="Image 1" class="float-left w-60 h-60" />
@@ -32,22 +32,27 @@ const paragraphs = [loremText.substring(1), loremText, loremText];
         <!-- Paragraphs -->
 
         <div class="flex items-end">
+          <!-- Ensures alignment at the bottom -->
           <div class="inline-block">
-            <Image
-              src={dropCap}
-              alt=""
-              class="relative float-left w-12 h-12 inline"
-            />
+            <a href="https://nohello.net/en/" class="image-link">
+              <Image
+                src={dropCap}
+                alt="A drop cap of an H"
+                class="relative float-left w-12 h-12 inline"
+              />
+            </a>
           </div>
-          <!-- Drop cap image -->
-          <p class="mb-4 align-bottom">
-            {paragraphs[0].substring(0, 20)}
+          <!-- Adjust vertical alignment as needed -->
+          <p class="align-bottom" style="margin-bottom: 0;">
+            <!-- Remove mb-4 if it's pushing the text up -->
+            {paragraphs[0].substring(0, 24)}
           </p>
         </div>
+
         {
           paragraphs.map((para, index) => (
             <p class={`mb-4 ${index === 0 ? "drop-cap" : ""}`}>
-              {index === 0 ? para.substring(20) : para}
+              {index === 0 ? para.substring(24) : para}
             </p>
           ))
         }
@@ -55,9 +60,9 @@ const paragraphs = [loremText.substring(1), loremText, loremText];
     </div>
   </MainLayout>
   <style>
-    /* .drop-cap::first-letter {
-      float: left;
-      font-size: 2em;
-    } */
+    /* TODO: this doesn't work :( */
+    .image-link:active img {
+      filter: brightness(0.5) sepia(1) hue-rotate(270deg); /* Adjusts the image to a shade of purple */
+    }
   </style>
 </html>
