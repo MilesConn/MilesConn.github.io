@@ -21,6 +21,7 @@ const __dirname = dirname(__filename); // Full Astro Configuration API Documenta
 export default defineConfig(
   /** @type {import('astro').AstroUserConfig} */
   {
+    site: "https://milesconn.io",
     experimental: {
       assets: true,
     },
