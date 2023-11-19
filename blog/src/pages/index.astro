@@ -32,18 +32,16 @@ const paragraphs = [
         <!-- Paragraphs -->
 
         <div class="flex items-end">
-          <!-- Ensures alignment at the bottom -->
           <div class="inline-block">
             <a href="https://nohello.net/en/" class="image-link">
               <Image
                 src={dropCap}
                 alt="A drop cap of an H"
-                class="relative float-left w-12 h-12 inline"
+                class="relative inline-block w-16 h-16 object-contain align-text-top"
               />
             </a>
           </div>
-          <!-- Adjust vertical alignment as needed -->
-          <p class="align-bottom" style="margin-bottom: 0;">
+          <p class="align-text-top" style="margin-bottom: 0;">
             <!-- Remove mb-4 if it's pushing the text up -->
             {paragraphs[0].substring(0, 24)}
           </p>

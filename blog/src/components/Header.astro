@@ -1,6 +1,5 @@
 ---
 import { SITE } from "$/config";
-import ModeSwitcherBtn from "./ModeHandler/ModeSwitcherBtn.svelte";
 import SearchBtn from "./search/SearchBtn.svelte";
 
 const { title, descriptions } = SITE;
@@ -10,20 +9,22 @@ const randomDescription = randomElem(descriptions);
 
 <header class="flex justify-between items-center gap-4 py-3">
   <!-- Title and Description -->
-  <div class="flex flex-col justify-center min-w-[16rem]">
-    <div
-      class="flex flex-col max-w-[15rem] font-mono text-2xl -tracking-[0.22rem]"
-    >
-      <div class="flex justify-between">
-        <span class="text-black">the</span>
-        <span class="text-expired-seaweed-salad">ephemeral</span>
+  <a href="/">
+    <div class="flex flex-col justify-center min-w-[16rem]">
+      <div
+        class="flex flex-col max-w-[15rem] font-mono text-2xl -tracking-[0.22rem]"
+      >
+        <div class="flex justify-between">
+          <span class="text-black">the</span>
+          <span class="text-expired-seaweed-salad">ephemeral</span>
+        </div>
+        <div class="text-unripe-plum">homestead</div>
       </div>
-      <div class="text-unripe-plum">homestead</div>
+      <p class="text-sm flex-1 font-mono -tracking-[0.10rem]">
+        {randomDescription}
+      </p>
     </div>
-    <p class="text-sm flex-1 font-mono -tracking-[0.10rem]">
-      {randomDescription}
-    </p>
-  </div>
+  </a>
 
   <!-- Icons -->
   <div class="flex items-center gap-3">
