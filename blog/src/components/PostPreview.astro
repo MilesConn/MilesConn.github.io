@@ -4,18 +4,6 @@ const { frontmatter: post, url } = Astro.props.post;
 ---
 
 <div class="post-preview">
-  <div class="sm:w-20 md:w-32">
-    <div class="post-preview__date">
-      <span class="post-preview__date__day"
-        >{new Date(post.date).getDate()}</span
-      >
-      <span class="post-preview__date__month-n-year"
-        >{
-          `${getMonthName(post.date)} ${new Date(post.date).getFullYear()}`
-        }</span
-      >
-    </div>
-  </div>
   <div class="flex-1">
     <h4 class="post-preview__title">
       <a href={url} title={post.title}>{post.title}</a>

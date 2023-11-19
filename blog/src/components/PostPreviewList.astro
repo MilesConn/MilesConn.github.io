@@ -8,6 +8,8 @@ const { posts } = Astro.props;
 const sortedPosts = posts.sort(
   (a, b) => Date.parse(b.frontmatter.date) - Date.parse(a.frontmatter.date)
 );
+
+console.log("SORTED POSTS 2: ", sortedPosts);
 ---
 
 <section class="post-preview__list">
