@@ -86,7 +86,7 @@ async function readImage(): Promise<string | null> {
       const fileBuffer = await readFile(filePath);
       const base64String = fileBuffer.toString("base64");
       // TODO: need to adjust mime type
-      const buffer = Buffer.from(base64String, 'base64');
+      const buffer = Buffer.from(base64String, "base64");
       return new Uint8Array(buffer);
     } catch (_) {
       // This is not cross-platform because readFile retruns content directories in
@@ -106,6 +106,16 @@ function getDitheredFilePath(filePath) {
   return nodepath.join(dir, `${base}_dithered${ext}`);
 }
 
+function uint8ArrayToBase64(buffer) {
+  let binary = "";
+  let bytes = new Uint8Array(buffer);
+  let len = bytes.byteLength;
+  for (let i = 0; i < len; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return btoa(binary);
+}
+
 async function proccessDitheredImage(): Promise<string> {
   const { out, width, height } = await processImage();
 
@@ -123,8 +133,7 @@ async function proccessDitheredImage(): Promise<string> {
   const u8 = new Uint8ClampedArray(out);
   imageData.data.set(u8);
 
-  const decoder = new TextDecoder("utf8");
-  const b64encoded = btoa(decoder.decode(u8));
+  const b64encoded = uint8ArrayToBase64(u8);
 
   const newFileName = getDitheredFilePath(basename);
 
@@ -137,9 +146,9 @@ async function proccessDitheredImage(): Promise<string> {
   return dataUrl;
 }
 
-const existingImage = await readImage();
+// const existingImage = await readImage();
 
-const dataUrl = existingImage ? existingImage : await proccessDitheredImage();
+const dataUrl = await proccessDitheredImage();
 
 console.log("Data URL: ", dataUrl);
 ---
