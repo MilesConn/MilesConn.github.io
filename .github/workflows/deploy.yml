@@ -26,10 +26,9 @@ jobs:
         with:
           node-version: 18
           cache: "yarn"
-          cache-dependency-path: "blog/*.lock"
 
-      - name: Install Yarn 3.3.1
-        run: npm install -g yarn@3.3.1
+      - name: Enable Corepack
+        run: corepack enable
 
       - name: Check Yarn Version
         run: yarn --version
