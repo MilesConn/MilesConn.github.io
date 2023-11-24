@@ -13,7 +13,7 @@ const paragraphs = [
 ];
 ---
 
-<!-- TODO: extract this to work with default.astro --><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <BaseHead title={SITE.title} description="About me landing page" />
@@ -22,45 +22,34 @@ const paragraphs = [
     <div class="relative py-2">
       <!-- Image placement -->
       <Image src={frameMiles} alt="Image 1" class="float-left w-60 h-60" />
-
-      <!-- top-0 left-1/2 sm:left-0 -translate-x-1/2 sm:translate-x-0 scale-50 float-left -->
-
       <!-- Text wrapping -->
       <div class="ml-8 item-body">
-        <!-- Drop Cap -->
-
-        <!-- Paragraphs -->
-
-        <div class="flex items-end">
-          <div class="inline-block">
-            <a href="https://nohello.net/en/" class="image-link">
-              <Image
-                src={dropCap}
-                alt="A drop cap of an H"
-                class="relative inline-block w-16 h-16 object-contain align-text-top"
-              />
-            </a>
-          </div>
-          <p class="align-text-top" style="margin-bottom: 0;">
-            <!-- Remove mb-4 if it's pushing the text up -->
-            {paragraphs[0].substring(0, 24)}
-          </p>
-        </div>
-
-        {
-          paragraphs.map((para, index) => (
-            <p class={`mb-4 ${index === 0 ? "drop-cap" : ""}`}>
-              {index === 0 ? para.substring(24) : para}
-            </p>
-          ))
-        }
+        <!-- Float the drop cap left and apply negative margin-top to align with the bottom of the text -->
+        <a
+          href="https://nohello.net/en/"
+          class="float-left image-link mt-[-2em]"
+        >
+          <Image
+            src={dropCap}
+            alt="A drop cap of an H"
+            class="w-14 h-auto object-contain"
+          />
+        </a>
+        <!-- Text Content -->
+        <p class="mt-0 mb-4" style="overflow-wrap: break-word;">
+          {paragraphs[0]}
+        </p>
+        <!-- Remaining paragraphs -->
+        {paragraphs.slice(1).map((para) => <p class="mb-4">{para}</p>)}
       </div>
     </div>
   </MainLayout>
   <style>
-    /* TODO: this doesn't work :( */
+    .image-link {
+      margin-right: 8px; /* Space between drop cap and text */
+    }
     .image-link:active img {
-      filter: brightness(0.5) sepia(1) hue-rotate(270deg); /* Adjusts the image to a shade of purple */
+      filter: brightness(0.5) sepia(1) hue-rotate(270deg); /* Purple shade on active */
     }
   </style>
 </html>
