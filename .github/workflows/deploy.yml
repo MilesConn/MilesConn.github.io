@@ -25,10 +25,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: "yarn"
 
-      - name: Enable Corepack
-        run: corepack enable
+      - name: Install Yarn 3.3.1
+        run: npm install -g yarn@3.3.1
 
       - name: Check Yarn Version
         run: yarn --version
