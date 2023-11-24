@@ -1,0 +1,18 @@
+<script>
+  export let baseFrequency = "0.75";
+  export let opacity = "0.80";
+</script>
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="300"
+  height="300"
+>
+  <filter id="n" x="0" y="0">
+    <feTurbulence type="fractalNoise" {baseFrequency} stitchTiles="stitch" />
+  </filter>
+
+  <rect width="300" height="300" fill="#fff" />
+  <rect width="300" height="300" filter="url(#n)" {opacity} />
+</svg>

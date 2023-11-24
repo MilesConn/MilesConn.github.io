@@ -57,7 +57,8 @@
 
 <div class="search">
   <div class="search__ctrl">
-    <label for="search"><SearchIcon found={searchResults.length > 0} /></label>
+    <!-- TODO: update icon get rid of extra path -->
+    <label for="search"><SearchIcon found={false} /></label>
     <input
       type="text"
       name="search"
