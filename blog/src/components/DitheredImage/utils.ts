@@ -1,38 +1,16 @@
----
-// TODO: on my mac this was an issue and here it isn't?
 // @ts-expect-error no types :(
 import RgbQuant from "rgbquant";
 import { readFile, writeFile, stat } from "fs/promises";
 import * as nodepath from "path";
 import { createCanvas, loadImage } from "canvas";
-
-// TODO: we should write out the image to a file and then reload it
-// both for build caching and so we can use assets image optimizer
-
-// TODO: add a global flag for invalidating cache
-
-type Props = {
-  imagePath: string;
-  dither?: boolean;
-  caption?: string;
-  altText: string;
-};
-
-// TODO:
-// we should also allow preprocessing in a prebuild script
-// it'd be nice because then we can store metadata about the files and not have to pass it via
-// url
-
-const { imagePath, dither = true, caption, altText } = Astro.props;
-
-const basename = nodepath.posix.basename(imagePath);
+import type { PathLike } from "fs";
 
 function typeOf(val: any) {
   return Object.prototype.toString.call(val).slice(8, -1);
 }
 
 // Function to process the image
-async function processImage() {
+async function processImage(imagePath: PathLike) {
   const data = await readFile(imagePath);
   console.log("data: ", data);
   const img = await loadImage(data);
@@ -116,8 +94,16 @@ function uint8ArrayToBase64(buffer) {
   return btoa(binary);
 }
 
-async function proccessDitheredImage(): Promise<string> {
-  const { out, width, height } = await processImage();
+export function getBasename(path: string) {
+  return nodepath.posix.basename(path);
+}
+
+export async function proccessDitheredImage(
+  imagePath: string,
+  saveImage = true
+): Promise<string> {
+  const basename = getBasename(imagePath);
+  const { out, width, height } = await processImage(imagePath);
 
   const canvas = createCanvas(width, height);
   const ctx = canvas.getContext("2d");
@@ -133,11 +119,13 @@ async function proccessDitheredImage(): Promise<string> {
   const u8 = new Uint8ClampedArray(out);
   imageData.data.set(u8);
 
-  const b64encoded = uint8ArrayToBase64(u8);
+  if (saveImage) {
+    const b64encoded = uint8ArrayToBase64(u8);
 
-  const newFileName = getDitheredFilePath(basename);
+    const newFileName = getDitheredFilePath(basename);
 
-  await writeFile(newFileName, b64encoded);
+    await writeFile(newFileName, b64encoded);
+  }
 
   ctx.putImageData(imageData, 0, 0);
 
@@ -145,16 +133,3 @@ async function proccessDitheredImage(): Promise<string> {
   const dataUrl = canvas.toDataURL();
   return dataUrl;
 }
-
-// const existingImage = await readImage();
-
-const dataUrl = await proccessDitheredImage();
-
-console.log("Data URL: ", dataUrl);
----
-
-<a href=`/file/${basename}` class="block text-center">
-  <!-- TODO: convert to image url -->
-  <img src={dataUrl} alt={altText} />
-  {caption && <span class="block text-center mt-2">{caption}</span>}
-</a>

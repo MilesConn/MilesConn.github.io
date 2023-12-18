@@ -1,0 +1,41 @@
+---
+// TODO: on my mac this was an issue and here it isn't?
+// @ts-expect-error no types :(
+import RgbQuant from "rgbquant";
+import { readFile, writeFile, stat } from "fs/promises";
+import * as nodepath from "path";
+import { createCanvas, loadImage } from "canvas";
+import { getBasename, proccessDitheredImage } from "./utils";
+
+// TODO: we should write out the image to a file and then reload it
+// both for build caching and so we can use assets image optimizer
+
+// TODO: add a global flag for invalidating cache
+
+type Props = {
+  imagePath: string;
+  dither?: boolean;
+  caption?: string;
+  altText: string;
+};
+
+// TODO:
+// we should also allow preprocessing in a prebuild script
+// it'd be nice because then we can store metadata about the files and not have to pass it via
+// url
+
+const { imagePath, dither = true, caption, altText } = Astro.props;
+
+// const existingImage = await readImage();
+
+const dataUrl = await proccessDitheredImage(imagePath);
+const basename = getBasename(imagePath);
+
+console.log("Data URL: ", dataUrl);
+---
+
+<a href=`/file/${basename}` class="block text-center">
+  <!-- TODO: convert to image url -->
+  <img src={dataUrl} alt={altText} />
+  {caption && <span class="block text-center mt-2">{caption}</span>}
+</a>
