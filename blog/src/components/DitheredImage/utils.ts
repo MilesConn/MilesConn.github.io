@@ -1,6 +1,5 @@
 import { writeFile, stat } from "fs/promises";
 import * as nodepath from "path";
-import { PNG } from "pngjs";
 import { createCanvas, loadImage } from "canvas";
 import { applyPalette, applyPaletteSync, utils } from "image-q";
 
