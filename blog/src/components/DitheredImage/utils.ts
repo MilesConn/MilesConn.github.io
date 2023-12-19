@@ -57,29 +57,20 @@ export async function processDitheredImage(imagePath: string): Promise<string> {
   palette.add(utils.Point.createByRGBA(139, 172, 15, 255));
   palette.add(utils.Point.createByRGBA(155, 188, 15, 255));
 
-  // const outPointContainer = await applyPalette(inPointContainer, palette, {
-  //   colorDistanceFormula: "euclidean", // optional
-  //   imageQuantization: "floyd-steinberg", // optional
-  //   onProgress: (progress) => console.log("applyPalette", progress), // optional
-  // });
-
-  // console.log("OUT CONTAINER", outPointContainer.toUint8Array());
-
-  // Converting the output point container to ImageData
-  // const outputImageData = new ImageData(
-  //   new Uint8ClampedArray(inPointContainer.toUint8Array()),
-  //   img.width,
-  //   img.height
-  // );
-
-  // console.log("OUTPUT IMAGE DATA: ", outputImageData);
+  const outPointContainer = await applyPalette(inPointContainer, palette, {
+    colorDistanceFormula: "euclidean", // optional
+    imageQuantization: "floyd-steinberg", // optional
+    onProgress: (progress) => console.log("applyPalette", progress), // optional
+  });
 
   // Drawing the processed image onto a new canvas
   const outputCanvas = createCanvas(img.width, img.height);
   const outputCtx = outputCanvas.getContext("2d");
 
   const outimageData = await outputCtx.createImageData(img.width, img.height);
-  outimageData.data.set(new Uint8ClampedArray(inPointContainer.toUint8Array()));
+  outimageData.data.set(
+    new Uint8ClampedArray(outPointContainer.toUint8Array())
+  );
   outputCtx.putImageData(outimageData, 0, 0);
 
   // Get buffer from the canvas and write to file
@@ -87,6 +78,9 @@ export async function processDitheredImage(imagePath: string): Promise<string> {
 
   // Write the processed image back to a file
   await writeFile(ditheredPath.substring(1), buffer);
+
+  // File systems aren't atomic and I found weird issues so this gives a bit of time to sync
+  await new Promise((resolve) => setTimeout(resolve, 500));
 
   return ditheredPath;
 }
