@@ -22,9 +22,6 @@ export default defineConfig(
   /** @type {import('astro').AstroUserConfig} */
   {
     site: "https://milesconn.io",
-    experimental: {
-      assets: true,
-    },
     markdown: {
       remarkPlugins: [randomBorderCaps],
     },
