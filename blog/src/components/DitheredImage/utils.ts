@@ -1,135 +1,93 @@
-// @ts-expect-error no types :(
-import RgbQuant from "rgbquant";
-import { readFile, writeFile, stat } from "fs/promises";
+import { writeFile, stat } from "fs/promises";
 import * as nodepath from "path";
+import { PNG } from "pngjs";
 import { createCanvas, loadImage } from "canvas";
-import type { PathLike } from "fs";
+import { applyPalette, applyPaletteSync, utils } from "image-q";
 
-function typeOf(val: any) {
-  return Object.prototype.toString.call(val).slice(8, -1);
+// Get the dithered file path
+function getDitheredFilePath(imagePath: string) {
+  const dir = "/" + nodepath.dirname(imagePath);
+  const ext = nodepath.extname(imagePath);
+  const base = nodepath.basename(imagePath, ext);
+  return nodepath.join(dir, `${base}_dithered.png`);
 }
 
-// Function to process the image
-async function processImage(imagePath: PathLike) {
-  const data = await readFile(imagePath);
-  console.log("data: ", data);
-  const img = await loadImage(data);
-  console.log("image: ", img);
-
-  console.log("typeof 2 : ", typeOf(img));
-  const can = createCanvas(img.width, img.height);
-  console.log("can: ", can);
-  console.log("typeof 1 : ", typeOf(can));
-  const ctx = can.getContext("2d");
-  console.log("WIDTH : ", img.width);
-  console.log("Height : ", img.height);
-  ctx.drawImage(img, 0, 0, img.width, img.height);
-  const imgd = ctx.getImageData(0, 0, img.width, img.height);
-
-  const CMYK = [
-    [0, 0, 0],
-    [255, 255, 0],
-    [0, 255, 255],
-    [255, 0, 255],
-    [255, 255, 255],
-  ];
-  const GREEN_MONOCHROME = [
-    [238, 255, 219],
-    [29, 56, 1],
-  ];
-  const q = new RgbQuant({
-    // colors: 256,
-    // palette: GREEN_MONOCHROME,
-    palette: CMYK,
-    reIndex: true,
-  });
-  // q.sample(imgd.data, img.width);
-  // const pal = q.palette(true);
-  // const out = q.reduce(imgd.data, 1, "FloydSteinberg");
-  const out = q.reduce(imgd.data, 1, "FloydSteinberg");
-
-  // You might want to do something with 'out' here, e.g., render it
-  return { out, width: img.width, height: img.height };
+// Check if file exists
+async function fileExists(filePath: string): Promise<boolean> {
+  try {
+    console.log("FILE PATH : ", filePath);
+    await stat(filePath.substring(1));
+    console.log("IT EXISTS!");
+    return true;
+  } catch {
+    return false;
+  }
 }
 
-async function readImage(): Promise<string | null> {
-  const filePath = nodepath.resolve(process.cwd(), "public", "example.jpg"); // Update the path to your image
+// Process and dither the image
+export async function processDitheredImage(imagePath: string): Promise<string> {
+  const ditheredPath = getDitheredFilePath(imagePath);
 
-  const exists = await stat(filePath)
-    .then(() => true)
-    .catch(() => false);
-
-  if (exists) {
-    try {
-      const fileBuffer = await readFile(filePath);
-      const base64String = fileBuffer.toString("base64");
-      // TODO: need to adjust mime type
-      const buffer = Buffer.from(base64String, "base64");
-      return new Uint8Array(buffer);
-    } catch (_) {
-      // This is not cross-platform because readFile retruns content directories in
-      // on freeBSD
-      return null;
-    }
+  // Check if the dithered image already exists
+  if (await fileExists(ditheredPath)) {
+    return ditheredPath;
   }
 
-  return null;
-}
-
-function getDitheredFilePath(filePath) {
-  const dir = nodepath.dirname(filePath);
-  const ext = nodepath.extname(filePath);
-  const base = nodepath.basename(filePath, ext);
-
-  return nodepath.join(dir, `${base}_dithered${ext}`);
-}
-
-function uint8ArrayToBase64(buffer) {
-  let binary = "";
-  let bytes = new Uint8Array(buffer);
-  let len = bytes.byteLength;
-  for (let i = 0; i < len; i++) {
-    binary += String.fromCharCode(bytes[i]);
-  }
-  return btoa(binary);
-}
-
-export function getBasename(path: string) {
-  return nodepath.posix.basename(path);
-}
-
-export async function proccessDitheredImage(
-  imagePath: string,
-  saveImage = true
-): Promise<string> {
-  const basename = getBasename(imagePath);
-  const { out, width, height } = await processImage(imagePath);
-
-  const canvas = createCanvas(width, height);
+  // Load the image using canvas
+  const img = await loadImage(imagePath);
+  const canvas = createCanvas(img.width, img.height);
   const ctx = canvas.getContext("2d");
-  console.log("out:", out);
-  console.log("width:", width);
-  console.log("height:", height);
-  console.log("ctx:", ctx);
+  ctx.drawImage(img, 0, 0, img.width, img.height);
+  const imageData = ctx.getImageData(0, 0, img.width, img.height);
 
-  // Create an ImageData object from the Uint8Array
-  // const imageData = new ImageData(new Uint8ClampedArray(out), width, height);
-  // console.log("Image data: ", imageData);
-  const imageData = await ctx.createImageData(width, height);
-  const u8 = new Uint8ClampedArray(out);
-  imageData.data.set(u8);
+  // @ts-expect-error differing imports for ImageData
+  const inPointContainer = utils.PointContainer.fromImageData(imageData);
 
-  if (saveImage) {
-    const b64encoded = uint8ArrayToBase64(u8);
+  // This we don't need to do if we want to use stylized palettes
+  // const palette = buildPaletteSync([inPointContainer], {
+  //   colorDistanceFormula: "euclidean", // optional
+  //   paletteQuantization: "neuquant", // optional
+  //   colors: 128, // optional
+  //   // onProgress: (progress) => console.log("buildPalette", progress), // optional
+  // });
 
-    const newFileName = getDitheredFilePath(basename);
+  const palette = new utils.Palette();
+  palette.add(utils.Point.createByRGBA(202, 220, 159, 255));
+  palette.add(utils.Point.createByRGBA(15, 56, 15, 255));
+  palette.add(utils.Point.createByRGBA(48, 98, 48, 255));
+  palette.add(utils.Point.createByRGBA(139, 172, 15, 255));
+  palette.add(utils.Point.createByRGBA(155, 188, 15, 255));
 
-    await writeFile(newFileName, b64encoded);
-  }
+  // const outPointContainer = await applyPalette(inPointContainer, palette, {
+  //   colorDistanceFormula: "euclidean", // optional
+  //   imageQuantization: "floyd-steinberg", // optional
+  //   onProgress: (progress) => console.log("applyPalette", progress), // optional
+  // });
 
-  ctx.putImageData(imageData, 0, 0);
+  // console.log("OUT CONTAINER", outPointContainer.toUint8Array());
 
-  // Convert the canvas to a data URL
-  const dataUrl = canvas.toDataURL();
-  return dataUrl;
+  // Converting the output point container to ImageData
+  // const outputImageData = new ImageData(
+  //   new Uint8ClampedArray(inPointContainer.toUint8Array()),
+  //   img.width,
+  //   img.height
+  // );
+
+  // console.log("OUTPUT IMAGE DATA: ", outputImageData);
+
+  // Drawing the processed image onto a new canvas
+  const outputCanvas = createCanvas(img.width, img.height);
+  const outputCtx = outputCanvas.getContext("2d");
+
+  const outimageData = await outputCtx.createImageData(img.width, img.height);
+  outimageData.data.set(new Uint8ClampedArray(inPointContainer.toUint8Array()));
+  outputCtx.putImageData(outimageData, 0, 0);
+
+  // Get buffer from the canvas and write to file
+  const buffer = outputCanvas.toBuffer("image/png");
+
+  // Write the processed image back to a file
+  await writeFile(ditheredPath.substring(1), buffer);
+
+  return ditheredPath;
 }

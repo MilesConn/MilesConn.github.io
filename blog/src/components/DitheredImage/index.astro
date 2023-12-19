@@ -1,11 +1,6 @@
 ---
-// TODO: on my mac this was an issue and here it isn't?
-// @ts-expect-error no types :(
-import RgbQuant from "rgbquant";
-import { readFile, writeFile, stat } from "fs/promises";
-import * as nodepath from "path";
-import { createCanvas, loadImage } from "canvas";
-import { getBasename, proccessDitheredImage } from "./utils";
+import { Image } from "astro:assets";
+import { processDitheredImage } from "./utils";
 
 // TODO: we should write out the image to a file and then reload it
 // both for build caching and so we can use assets image optimizer
@@ -28,14 +23,20 @@ const { imagePath, dither = true, caption, altText } = Astro.props;
 
 // const existingImage = await readImage();
 
-const dataUrl = await proccessDitheredImage(imagePath);
-const basename = getBasename(imagePath);
+console.log("HERE!");
+const ditheredImage = await processDitheredImage(imagePath);
+console.log("HERE2!");
+const basename = imagePath;
 
-console.log("Data URL: ", dataUrl);
+const images = import.meta.glob("/src/assets/*.{jpeg,jpg,png,gif}");
+
+console.log("IMAGES: ", images);
+console.log("Data URL: ", ditheredImage);
+console.log("THing ", images[ditheredImage]);
 ---
 
 <a href=`/file/${basename}` class="block text-center">
-  <!-- TODO: convert to image url -->
-  <img src={dataUrl} alt={altText} />
+  <!-- @ts-expect-error -->
+  <Image src={images[ditheredImage]()} alt={altText} />
   {caption && <span class="block text-center mt-2">{caption}</span>}
 </a>
