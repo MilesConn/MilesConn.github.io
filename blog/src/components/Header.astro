@@ -4,7 +4,6 @@ import SearchBtn from "./search/SearchBtn.svelte";
 
 const { title, descriptions } = SITE;
 const randomElem = (x) => x[Math.floor(Math.random() * x.length)];
-const randomDescription = randomElem(descriptions);
 ---
 
 <header class="flex justify-between items-center gap-4 py-3">
@@ -21,7 +20,7 @@ const randomDescription = randomElem(descriptions);
         <div class="text-unripe-plum">homestead</div>
       </div>
       <p class="text-sm flex-1 font-mono -tracking-[0.10rem]">
-        {randomDescription}
+        {randomElem(descriptions)}
       </p>
     </div>
   </a>
