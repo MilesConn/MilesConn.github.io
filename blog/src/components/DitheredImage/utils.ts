@@ -24,6 +24,7 @@ async function fileExists(filePath: string): Promise<boolean> {
 }
 
 // Process and dither the image
+// TODO: I wonder if we can return the canvas.todataUrl to <Image> and render that?
 export async function processDitheredImage(imagePath: string): Promise<string> {
   const ditheredPath = getDitheredFilePath(imagePath);
 
@@ -57,11 +58,12 @@ export async function processDitheredImage(imagePath: string): Promise<string> {
   palette.add(utils.Point.createByRGBA(139, 172, 15, 255));
   palette.add(utils.Point.createByRGBA(155, 188, 15, 255));
 
-  const outPointContainer = await applyPalette(inPointContainer, palette, {
-    colorDistanceFormula: "euclidean", // optional
-    imageQuantization: "floyd-steinberg", // optional
-    onProgress: (progress) => console.log("applyPalette", progress), // optional
-  });
+  // const outPointContainer = await applyPalette(inPointContainer, palette, {
+  //   colorDistanceFormula: "euclidean", // optional
+  //   imageQuantization: "floyd-steinberg", // optional
+  //   onProgress: (progress) => console.log("applyPalette", progress), // optional
+  // });
+  const outPointContainer = inPointContainer;
 
   // Drawing the processed image onto a new canvas
   const outputCanvas = createCanvas(img.width, img.height);
