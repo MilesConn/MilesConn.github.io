@@ -1,0 +1,15 @@
+---
+import DefaultPageLayout from "$/layouts/default.astro";
+import SB1 from "$/experiments/saul_bass/SaulBass1.svelte";
+import SB2 from "$/experiments/saul_bass/SaulBass2.svelte";
+import SB3 from "$/experiments/saul_bass/SaulBass3.svelte";
+
+const title = "Saul Bass";
+const description = "";
+---
+
+<DefaultPageLayout content={{ title, description }}>
+    <!-- <SB1 client:load /> -->
+    <SB2 client:load />
+    <!-- <SB3 client:load /> -->
+</DefaultPageLayout>
