@@ -1,41 +1,46 @@
 <script lang="ts">
     import type { CanvasRenderingContext2D } from "canvas";
     import { onMount } from "svelte";
-    import { getLocalFonts, printJustifiedText } from "./utils";
+    import { calculateTextDimensions, printJustifiedText } from "./utils";
 
     const original = "#8ace03";
     const deluxe = "#ffffff";
 
     let text = "brat";
-    let backgroundColor = "#8ace03";
+    let backgroundColor = original;
     let textColor = "#000000";
-    let textAlign = "Center";
-    let fontSize = 74;
+    let fontSize = 94;
     let blurAmount = 1.8;
     let letterSpacing = 0;
     let xPosition = 250;
     let yPosition = 250;
-    let boxWidth = 200;
-    let boxHeight = 100;
+    let heightPadding = 5;
 
     let canvas;
     let ctx: CanvasRenderingContext2D;
     let isDragging = false;
-    let isResizing = false;
     let dragOffsetX = 0;
     let dragOffsetY = 0;
-    let resizeStartX = 0;
-    let resizeStartY = 0;
 
-    let localFonts: string[] = [];
+    let isInitialized = false;
 
     onMount(() => {
-        canvas = document.getElementById("canvas");
+        canvas = document.getElementById("canvas") as HTMLCanvasElement;
         ctx = canvas.getContext("2d");
+
+        // I think that calculate dimensions relies on the canvas for some reason?
+        updateCanvas();
+
+        // Center the text box initially
+        const { width, height } = calculateTextDimensions(text, fontSize, ctx);
+        xPosition = (canvas.width - width) / 2;
+        yPosition = (canvas.height - height) / 2;
+
+        isInitialized = true;
         updateCanvas();
     });
 
-    function updateCanvas(withLines = true) {
+    function updateCanvas() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // Set background
@@ -46,51 +51,35 @@
         ctx.fillStyle = textColor;
         ctx.font = `${fontSize}px Arial Narrow`;
         ctx.letterSpacing = `${letterSpacing}px`;
-        ctx.textAlign = textAlign;
+
+        // Calculate text dimensions
+        const { width, height } = calculateTextDimensions(text, fontSize, ctx);
 
         // Apply blur
         ctx.filter = `blur(${blurAmount}px)`;
 
         // Draw text box
-        if (withLines) {
-            ctx.strokeStyle = "white";
-            ctx.strokeRect(xPosition, yPosition, boxWidth, boxHeight);
-        }
+        // if (withLines) {
+        //     ctx.strokeStyle = "white";
+        //     ctx.strokeRect(xPosition, yPosition, width, height);
+        // }
 
         // Draw wrapped text
         printJustifiedText(
             ctx,
             text,
-            xPosition,
-            yPosition + fontSize,
-            fontSize + 5,
-            boxWidth,
+            xPosition, // Add left padding
+            yPosition, // Start from the top with font size offset
+            heightPadding,
+            width, // Subtract padding from width
         );
-        // const words = text.split(" ");
-        // let line = "";
-        // let y = yPosition + fontSize;
-
-        // for (let n = 0; n < words.length; n++) {
-        //     let testLine = line + words[n] + " ";
-        //     let metrics = ctx.measureText(testLine);
-        //     let testWidth = metrics.width;
-
-        //     if (testWidth > boxWidth && n > 0) {
-        //         ctx.fillText(line, xPosition, y);
-        //         line = words[n] + " ";
-        //         y += fontSize + 5;
-        //     } else {
-        //         line = testLine;
-        //     }
-        // }
-        // ctx.fillText(line, xPosition, y);
 
         // Reset filter
         ctx.filter = "none";
     }
 
     function downloadImage() {
-        updateCanvas(false);
+        updateCanvas();
         const link = document.createElement("a");
         link.download = "generated-image.png";
         link.href = canvas.toDataURL("image/png");
@@ -102,20 +91,13 @@
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
 
+        const { width, height } = calculateTextDimensions(text, fontSize, ctx);
+
         if (
-            x >= xPosition + boxWidth - 10 &&
-            x <= xPosition + boxWidth + 10 &&
-            y >= yPosition + boxHeight - 10 &&
-            y <= yPosition + boxHeight + 10
-        ) {
-            isResizing = true;
-            resizeStartX = x;
-            resizeStartY = y;
-        } else if (
             x >= xPosition &&
-            x <= xPosition + boxWidth &&
+            x <= xPosition + width &&
             y >= yPosition &&
-            y <= yPosition + boxHeight
+            y <= yPosition + height
         ) {
             isDragging = true;
             dragOffsetX = x - xPosition;
@@ -124,26 +106,19 @@
     }
 
     function handleMouseMove(event) {
+        if (!isDragging) return;
+
         const rect = canvas.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
 
-        if (isResizing) {
-            boxWidth = Math.max(50, boxWidth + (x - resizeStartX));
-            boxHeight = Math.max(50, boxHeight + (y - resizeStartY));
-            resizeStartX = x;
-            resizeStartY = y;
-            updateCanvas();
-        } else if (isDragging) {
-            xPosition = x - dragOffsetX;
-            yPosition = y - dragOffsetY;
-            updateCanvas();
-        }
+        xPosition = x - dragOffsetX;
+        yPosition = y - dragOffsetY;
+        updateCanvas();
     }
 
     function handleMouseUp() {
         isDragging = false;
-        isResizing = false;
     }
 
     $: {
@@ -167,7 +142,6 @@
 
     <div class="grid grid-cols-2 gap-4 mb-4">
         <div class="col-span-2">
-            <!-- <label class="block mb-2">Text:</label> -->
             <textarea
                 bind:value={text}
                 class="w-full p-2 border rounded"
@@ -176,24 +150,14 @@
             ></textarea>
         </div>
 
-        <!-- <div>
-            <label class="block mb-2">Background Color:</label>
-            <input
-                type="color"
-                bind:value={backgroundColor}
-                class="w-full p-2 border rounded"
-                on:input={updateCanvas}
-            />
-        </div> -->
-
         <div>
             <label class="block mb-2">Background Color:</label>
             <select
                 bind:value={backgroundColor}
                 class="w-full p-2 border rounded"
-                on:input={updateCanvas}
+                on:change={updateCanvas}
             >
-                <option value={original}>Original</option>
+                <option value={original} selected>Original</option>
                 <option value={deluxe}>Deluxe</option>
             </select>
         </div>
@@ -234,20 +198,6 @@
                 on:input={updateCanvas}
             />
         </div>
-
-        <!-- <div>
-            <label class="block mb-2">Text Alignment:</label>
-            <select
-                bind:value={textAlign}
-                class="w-full p-2 border rounded"
-                on:change={updateCanvas}
-            >
-                <option value="left">Left</option>
-                <option value="center">Center</option>
-                <option value="right">Right</option>
-                <option value="justify">Justified</option>
-            </select>
-        </div> -->
     </div>
 
     <button

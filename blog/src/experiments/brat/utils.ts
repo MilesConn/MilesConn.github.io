@@ -36,12 +36,11 @@ export function printAtWordWrap(context: CanvasRenderingContext2D, text, x, y, l
     }
 }
 
-export function printJustifiedText(context: CanvasRenderingContext2D, text: string, x: number, y: number, lineHeight: number, fitWidth: number) {
+export function printJustifiedText(context: CanvasRenderingContext2D, text: string, x: number, y: number, heightPadding: number, fitWidth: number) {
     const lines = text.split(/\r\n|\r|\n/);
-    const metrics = context.measureText('M'); // Use 'M' as a reference for text height
-    const fontHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
 
-    let currentY = y + fontHeight; // Start with the baseline of the first line
+    const lineHeight = fontHeight(context);
+    let currentY = y + lineHeight; // Start with the baseline of the first line
     for (let line of lines) {
         const words = line.split(' ');
 
@@ -54,8 +53,34 @@ export function printJustifiedText(context: CanvasRenderingContext2D, text: stri
             currentX += (context.measureText(words[i]).width + extraX + baseGap);
         }
 
-        currentY += lineHeight;
+        currentY += lineHeight + heightPadding;
     }
+}
+
+function fontHeight(ctx: CanvasRenderingContext2D) {
+    const metrics = ctx.measureText('M'); // Use 'M' as a reference for text height
+    const fontHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
+    return fontHeight;
+}
+
+export function calculateTextDimensions(
+    text: string,
+    fontSize: number,
+    ctx: CanvasRenderingContext2D,
+) {
+    const lines = text.split(/\r\n|\r|\n/);
+    const lineHeight = fontHeight(ctx);
+    let maxWidth = 0;
+
+    for (let line of lines) {
+        const metrics = ctx.measureText(line);
+        maxWidth = Math.max(maxWidth, metrics.width);
+    }
+
+    return {
+        width: maxWidth,
+        height: lines.length * lineHeight
+    };
 }
 
 // Not sure why this isn't being picked up 
