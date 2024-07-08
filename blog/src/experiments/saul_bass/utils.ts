@@ -6,36 +6,28 @@ export function generateBoxPoints(
     heightStdDev: number,
     widthMean: number,
     widthStdDev: number,
+    height: number,
+    width: number,
 ): number[][][] {
     const points: number[][][] = [];
+
+    // Assume we're drawing on a [0,0] [1,1] canvas
 
     for (let i = 0; i < rows; i++) {
         points[i] = [];
         let currentX = 0;
 
+        // TODO: make cols variable as well
         for (let j = 0; j < cols; j++) {
-            const width = Math.max(
-                0,
-                Math.round(gaussianRandom(widthMean, widthStdDev)),
-            );
-            let height: number;
 
-            if (j === 0 || Math.random() < p) {
-                height =
-                    i > 0
-                        ? points[i - 1][j][1]
-                        : Math.max(
-                            0,
-                            Math.round(
-                                gaussianRandom(heightMean, heightStdDev),
-                            ),
-                        );
+            let width;
+            if (currentX + widthMean >= width) {
+                width = width - currentX;
             } else {
-                height = Math.max(
-                    0,
-                    Math.round(gaussianRandom(heightMean, heightStdDev)),
-                );
+                width = Math.round(positiveGaussian(widthMean, widthStdDev));
             }
+
+            let height = Math.round(positiveGaussian(heightMean, heightStdDev));
 
             points[i][j] = [currentX, height];
             currentX += width;
@@ -43,6 +35,10 @@ export function generateBoxPoints(
     }
 
     return points;
+}
+
+function positiveGaussian(mean: number, stdDev: number): number {
+    return Math.abs(gaussianRandom(mean, stdDev));
 }
 
 export function gaussianRandom(mean: number, stdDev: number): number {
@@ -54,6 +50,21 @@ export function gaussianRandom(mean: number, stdDev: number): number {
     const gaussian =
         Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
     return mean + stdDev * gaussian;
+}
+
+export function generateBoxPoints3(
+    rows: number,
+    cols: number,
+    width: number,
+    height: number,
+    p: number,
+    heightMean: number,
+    heightStdDev: number,
+    widthMean: number,
+    widthStdDev: number,
+) {
+    const points: number[][][] = [];
+    let totalHeight: number[] = new Array(cols).fill(0);
 }
 
 export function generateBoxPoints2(

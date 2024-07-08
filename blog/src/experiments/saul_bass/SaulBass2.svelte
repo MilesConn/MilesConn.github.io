@@ -21,11 +21,15 @@
         return `rgb(${r}, ${g}, ${b})`;
     }
 
-    function scaleRowWidths(row: number[][]): number[][] {
-        const totalWidth = row[row.length - 1][0];
-        const scaleFactor = width / totalWidth;
-        return row.map(([x, y], j) => [x * scaleFactor, y]);
-    }
+    // function scaleRowWidths(row: number[][]): number[][] {
+    //     const totalWidth = row[row.length - 1][0];
+    //     const scaleFactor = width / totalWidth;
+    //     return row.map(([x, y], j) => [x * scaleFactor, y]);
+    // }
+
+    // function scalePoints(row: number[][]): number[][] {
+    //     return row.map(([x, y], j) => [x * width, y * height]);
+    // }
 
     onMount(() => {
         points = generateBoxPoints(
@@ -36,8 +40,11 @@
             heightStdDev,
             widthMean,
             widthStdDev,
+            height,
+            width,
         );
-        points = points.map(scaleRowWidths);
+        console.log("points: ", points);
+        // points = points.map(scalePoints);
     });
 </script>
 
@@ -46,7 +53,7 @@
         {#each row as [x, y], j}
             <rect
                 {x}
-                y={height - y}
+                y={height - y * i}
                 width={j < row.length - 1 ? row[j + 1][0] - x : width - x}
                 height={y}
                 fill={generateRandomColor()}
