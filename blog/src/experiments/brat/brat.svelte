@@ -171,7 +171,7 @@
                 bind:value={fontSize}
                 min="10"
                 max="172"
-                class="w-full"
+                class={`w-full accent-[#8ace03]`}
                 on:input={updateCanvas}
             />
         </div>
@@ -184,7 +184,7 @@
                 min="0"
                 max="10"
                 step="0.1"
-                class="w-full"
+                class={`w-full accent-[#8ace03]`}
                 on:input={updateCanvas}
             />
         </div>
@@ -196,7 +196,7 @@
                 bind:value={letterSpacing}
                 min="-5"
                 max="10"
-                class="w-full"
+                class={`w-full accent-[#8ace03]`}
                 on:input={updateCanvas}
             />
         </div>
