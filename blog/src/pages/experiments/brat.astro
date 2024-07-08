@@ -1,0 +1,13 @@
+---
+import DefaultPageLayout from "$/layouts/default.astro";
+import Brat1 from "$/experiments/brat/brat.svelte";
+
+const title = "Brat";
+const description = "";
+---
+
+<DefaultPageLayout content={{ title, description }}>
+    <!-- <SB1 client:load /> -->
+    <Brat1 client:load />
+    <!-- <SB3 client:load /> -->
+</DefaultPageLayout>
