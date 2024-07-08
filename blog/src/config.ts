@@ -5,10 +5,11 @@ export const NAV_ITEMS: NavItems = {
     path: "/",
     title: "home",
   },
-  blog: {
-    path: "/blog",
-    title: "blog",
-  },
+  // Turn off link for now
+  // blog: {
+  //   path: "/blog",
+  //   title: "blog",
+  // },
   // TODO: get rid of this
   // tags: {
   //   path: "/tags",
