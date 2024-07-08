@@ -129,16 +129,18 @@
 </script>
 
 <div class="container mx-auto p-4">
-    <canvas
-        id="canvas"
-        width="500"
-        height="500"
-        class="border border-gray-300 mb-4 cursor-move"
-        on:mousedown={handleMouseDown}
-        on:mousemove={handleMouseMove}
-        on:mouseup={handleMouseUp}
-        on:mouseleave={handleMouseUp}
-    ></canvas>
+    <div class="flex justify-center mb-4">
+        <canvas
+            id="canvas"
+            width="500"
+            height="500"
+            class="border border-gray-300 cursor-move"
+            on:mousedown={handleMouseDown}
+            on:mousemove={handleMouseMove}
+            on:mouseup={handleMouseUp}
+            on:mouseleave={handleMouseUp}
+        ></canvas>
+    </div>
 
     <div class="grid grid-cols-2 gap-4 mb-4">
         <div class="col-span-2">
@@ -200,10 +202,11 @@
         </div>
     </div>
 
-    <button
+    <!-- Actually don't need this because you can just save the image directly -->
+    <!-- <button
         on:click={downloadImage}
         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
     >
         Download Image
-    </button>
+    </button> -->
 </div>
