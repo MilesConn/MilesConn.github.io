@@ -1,0 +1,20 @@
+---
+import DefaultPageLayout from "$/layouts/default.astro";
+
+const title = "VMoog";
+const description = "VMoog is an experiment visual moog!";
+---
+
+<script type="module">
+    // @ts-ignore
+    import init from "/pkg/vam.js";
+    init().then(() => {
+        console.log("WASM Loaded");
+    });
+</script>
+
+<DefaultPageLayout content={{ title, description }}>
+    <!-- <SB1 client:load /> -->
+    <div class="bg-black" id="wasm-example"></div>
+    <!-- <SB3 client:load /> -->
+</DefaultPageLayout>
