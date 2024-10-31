@@ -8,6 +8,33 @@ const description = "VMoog is an experiment visual moog!";
 <script type="module">
     // @ts-ignore
     import init from "/pkg/vam.js";
+    const observer = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+            // @ts-ignore
+            for (const node of mutation.addedNodes) {
+                if (
+                    node instanceof HTMLElement &&
+                    node.matches('canvas[alt="winit window"]')
+                ) {
+                    console.log("Canvas found!");
+                    node.style.width = "100%";
+                    node.style.height = "100%";
+                    // Stop observing
+                    observer.disconnect();
+                }
+            }
+        }
+    });
+
+    const container = document.getElementById("wasm-example");
+    observer.observe(container, {
+        childList: true,
+        subtree: true,
+    });
+
+
+    // 1,00000,0000% the unsafe Rust I added was actually unsafe
+    // and there's race condition here ;( wah wah
     init().then(() => {
         console.log("WASM Loaded");
     });
@@ -15,6 +42,18 @@ const description = "VMoog is an experiment visual moog!";
 
 <DefaultPageLayout content={{ title, description }}>
     <!-- <SB1 client:load /> -->
-    <div class="bg-black" id="wasm-example"></div>
+    <div
+        class="bg-black resize overflow-auto p-2 min-h-[200px] min-w-[400px] h-[800px] w-[900px] cursor-se-resize border border-gray-400"
+        id="wasm-example"
+    >
+    </div>
     <!-- <SB3 client:load /> -->
 </DefaultPageLayout>
+
+<style></style>
+
+<style>
+    #wasm-example {
+        resize: both;
+    }
+</style>
