@@ -2,6 +2,7 @@
     import type { CanvasRenderingContext2D } from "canvas";
     import { onMount } from "svelte";
     import { calculateTextDimensions, printJustifiedText } from "./utils";
+    import { appleYUdothis, isSafari } from "./canvasPolyfill";
 
     const original = "#8ace03";
     const deluxe = "#ffffff";
@@ -12,8 +13,8 @@
     let fontSize = 94;
     let blurAmount = 1.8;
     let letterSpacing = 0;
-    let xPosition = 250;
-    let yPosition = 250;
+    let xPosition;
+    let yPosition;
     let heightPadding = 5;
 
     let canvas;
@@ -25,25 +26,33 @@
     let isInitialized = false;
 
     onMount(() => {
-        canvas = document.getElementById("canvas") as HTMLCanvasElement;
-        ctx = canvas.getContext("2d");
+        if (!ctx) {
+            canvas = document.getElementById("canvas") as HTMLCanvasElement;
+            ctx = canvas.getContext("2d");
 
-        // I think that calculate dimensions relies on the canvas for some reason?
-        updateCanvas();
+            // Added polylfill
+            appleYUdothis();
 
-        // Center the text box initially
-        const { width, height } = calculateTextDimensions(text, fontSize, ctx);
-        xPosition = (canvas.width - width) / 2;
-        yPosition = (canvas.height - height) / 2;
+            // I think that calculate dimensions relies on the canvas for some reason?
+            updateCanvas();
 
-        isInitialized = true;
-        updateCanvas();
+            // Center the text box initially
+            const { width, height } = calculateTextDimensions(
+                text,
+                fontSize,
+                ctx,
+            );
+            xPosition = (canvas.width - width) / 2;
+            yPosition = (canvas.height - height) / 2;
+
+            isInitialized = true;
+            updateCanvas();
+        }
     });
 
     function updateCanvas() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Set background
         ctx.fillStyle = backgroundColor;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -52,11 +61,7 @@
         ctx.font = `${fontSize}px Arial Narrow`;
         ctx.letterSpacing = `${letterSpacing}px`;
 
-        // Calculate text dimensions
         const { width, height } = calculateTextDimensions(text, fontSize, ctx);
-
-        // Apply blur
-        ctx.filter = `blur(${blurAmount}px)`;
 
         // Draw text box
         // if (withLines) {
@@ -64,15 +69,32 @@
         //     ctx.strokeRect(xPosition, yPosition, width, height);
         // }
 
-        // Draw wrapped text
-        printJustifiedText(
-            ctx,
-            text,
-            xPosition, // Add left padding
-            yPosition, // Start from the top with font size offset
-            heightPadding,
-            width, // Subtract padding from width
-        );
+        // Okay ... I don't even want to talk about it but the TL;DR
+        // honestly this is stupid but I don't care anymore
+        // see the comment in canvasPolyfill.js
+        if (isSafari()) {
+            // Draw wrapped text
+            printJustifiedText(
+                ctx,
+                text,
+                xPosition,
+                yPosition,
+                heightPadding,
+                width,
+            );
+
+            ctx.filter = `blur(${blurAmount}px)`;
+        } else {
+            ctx.filter = `blur(${blurAmount}px)`;
+            printJustifiedText(
+                ctx,
+                text,
+                xPosition,
+                yPosition,
+                heightPadding,
+                width,
+            );
+        }
 
         // Reset filter
         ctx.filter = "none";
