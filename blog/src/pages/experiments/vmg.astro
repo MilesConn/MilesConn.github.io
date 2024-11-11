@@ -31,6 +31,8 @@ const description = "VMoog is an experiment visual moog!";
     // runtime: typeof window !== 'undefined' ? 'browser' : 'other'
     // });
 
+    console.log("Secure COntext?", window.isSecureContext);
+
      const container = document.getElementById("wasm-example");
     observer.observe(container, {
         childList: true,
