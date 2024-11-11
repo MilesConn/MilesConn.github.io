@@ -7,7 +7,7 @@ const description = "VMoog is an experiment visual moog!";
 
 <script type="module">
     // @ts-ignore
-    import init from "/pkg/vam.js";
+    import init from "/wasm/vam.js";
     const observer = new MutationObserver((mutations) => {
         for (const mutation of mutations) {
             // @ts-ignore
@@ -25,16 +25,22 @@ const description = "VMoog is an experiment visual moog!";
             }
         }
     });
+    // console.log('WASM loading context:', {
+    // isModule: import.meta.url ? 'Yes' : 'No',
+    // environment: import.meta.env?.MODE || 'unknown',
+    // runtime: typeof window !== 'undefined' ? 'browser' : 'other'
+    // });
 
-    const container = document.getElementById("wasm-example");
+     const container = document.getElementById("wasm-example");
     observer.observe(container, {
         childList: true,
         subtree: true,
-    });
+     });
 
 
     // 1,00000,0000% the unsafe Rust I added was actually unsafe
     // and there's race condition here ;( wah wah
+    console.log("huh?");
     init().then(() => {
         console.log("WASM Loaded");
     });
@@ -55,5 +61,8 @@ const description = "VMoog is an experiment visual moog!";
 <style>
     #wasm-example {
         resize: both;
+    }
+    canvas {
+        background-color: black;
     }
 </style>
