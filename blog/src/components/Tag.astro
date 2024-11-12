@@ -13,23 +13,39 @@ const barley = {
     },
   },
 };
+const hexToRgb = (hex: string) => {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : null;
+};
+
 const accentColors = barley.colors.accent;
-const randomAccentColor =
-  Object.keys(accentColors)[
-    Math.floor(Object.keys(accentColors).length * Math.random())
+const randomAccentColor = 
+  Object.values(accentColors)[
+    Math.floor(Object.values(accentColors).length * Math.random())
   ];
+
+const rgb = hexToRgb(randomAccentColor);
+const bgColor = rgb ? `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)` : 'rgba(0, 0, 0, 0.1)';
+const textColor = randomAccentColor === barley.colors.accent.eggShell ? 
+  barley.colors.accent.deepBlack : randomAccentColor;
 
 type Props = {
   tag: string;
 };
-
 const { tag } = Astro.props;
 ---
-
 <a
-  class="inline-block bg-gray-100 p-0.5 my-2 mx-0.5 rounded-md text-blue-600 hover:text-blue-800 underline"
+  class="inline-block p-0.5 my-2 mx-0.5 rounded-md hover:opacity-80 transition-opacity"
   href={`/tags/${tag}`}
   title={tag}
+  style={{
+    backgroundColor: bgColor,
+    color: textColor,
+  }}
 >
-  #{tag}
+  #{tag.toLowerCase()}
 </a>
