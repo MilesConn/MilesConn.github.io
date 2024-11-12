@@ -4,6 +4,7 @@ import DefaultPageLayout from "$/layouts/default.astro";
 import Brat1 from "$/experiments/brat/brat.svelte";
 import SaulBass1 from "$/experiments/saul_bass/SaulBass1.svelte";
 import Desktop from "$/experiments/desktop/desktop.svelte";
+import Vmg from "./vmg.astro";
 
 const title = "Brat Generator";
 const description = "this is really important trust me";
@@ -13,6 +14,7 @@ export const getStaticPaths = (() => {
         { params: { experiment: "brat" } },
         { params: { experiment: "saul-bass" } },
         { params: { experiment: "desktop" } },
+        { params: { experiment: "vmg" } },
     ];
 }) satisfies GetStaticPaths;
 
@@ -27,14 +29,13 @@ const experiments = {
     brat: Brat1,
     "saul-bass": SaulBass1,
     desktop: Desktop,
+    vmg : Vmg,
 };
 
 const THING = experiments[experiment];
-console.log("THING: ", THING);
 ---
 
 <DefaultPageLayout content={{ title, description }}>
     <!-- @ts-ignore -->
-    <!-- <THING client:load /> -->
-    <Desktop client:load />
+    <THING client:load />
 </DefaultPageLayout>

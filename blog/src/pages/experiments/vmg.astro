@@ -2,7 +2,7 @@
 import DefaultPageLayout from "$/layouts/default.astro";
 
 const title = "VMoog";
-const description = "VMoog is an experiment visual moog!";
+const description = "VMoog is an experiment visual moog! (supports noise, osc_y, osc_x)";
 ---
 
 <script type="module">
@@ -42,7 +42,7 @@ const description = "VMoog is an experiment visual moog!";
 
     // 1,00000,0000% the unsafe Rust I added was actually unsafe
     // and there's race condition here ;( wah wah
-    console.log("huh?");
+    console.log("only support noise(), osc_y, osc_x for now!");
     init().then(() => {
         console.log("WASM Loaded");
     });
@@ -51,7 +51,7 @@ const description = "VMoog is an experiment visual moog!";
 <DefaultPageLayout content={{ title, description }}>
     <!-- <SB1 client:load /> -->
     <div
-        class="bg-black resize overflow-auto p-2 min-h-[200px] min-w-[400px] h-[800px] w-[900px] cursor-se-resize border border-gray-400"
+        class="bg-black resize overflow-auto p-2 min-h-[200px] min-w-[400px] h-[600px] w-[700px] cursor-se-resize border border-gray-400"
         id="wasm-example"
     >
     </div>

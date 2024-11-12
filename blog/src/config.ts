@@ -6,10 +6,14 @@ export const NAV_ITEMS: NavItems = {
     title: "home",
   },
   // Turn off link for now
-  // blog: {
-  //   path: "/blog",
-  //   title: "blog",
-  // },
+  blog: {
+    path: "/blog",
+    title: "blog",
+  },
+  experiments: {
+    path: "/experiments",
+    title: "experiments",
+  }
   // TODO: get rid of this
   // tags: {
   //   path: "/tags",

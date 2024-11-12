@@ -1,0 +1,27 @@
+---
+import DefaultPageLayout from "$/layouts/default.astro";
+import ExperimentPreviewList from "$/components/ExperimentList.astro";
+import Brat1 from "$/experiments/brat/brat.svelte";
+import SaulBass1 from "$/experiments/saul_bass/SaulBass1.svelte";
+import Desktop from "$/experiments/desktop/desktop.svelte";
+import Vmg from "./vmg.astro";
+
+const title = "Experiments";
+const description = "Interactive experiments and demos";
+
+export async function getStaticPaths() {
+    return [
+        { params: { experiment: undefined } }, // This will be the index/landing page
+        { params: { experiment: "brat" } },
+        { params: { experiment: "saul-bass" } },
+        { params: { experiment: "desktop" } },
+        { params: { experiment: "vmg" } },
+    ];
+}
+
+
+---
+
+        <DefaultPageLayout content={{ title, description }}>
+            <ExperimentPreviewList />
+        </DefaultPageLayout>
